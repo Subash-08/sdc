@@ -5,8 +5,11 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Admin Dashboard',
-    description: 'Manage your portfolio content',
+    description: 'Manage construction projects and articles',
 };
+
+// Admin pages depend on the authenticated user and live MongoDB data.
+export const dynamic = 'force-dynamic';
 
 export default function AdminRootLayout({
     children,

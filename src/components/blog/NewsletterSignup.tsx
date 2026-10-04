@@ -54,21 +54,20 @@ export default function NewsletterSignup({
   // ── Hero variant ────────────────────────────────────────────────────────────
   if (variant === 'hero') {
     return (
-      <section className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-8 py-12 text-white ${className}`}>
+      <section className={`relative overflow-hidden bg-ink px-8 py-12 text-white sm:px-12 sm:py-16 ${className}`}>
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute -top-6 -right-6 h-32 w-32 rounded-full bg-white" />
-          <div className="absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-white" />
+          <div className="construction-grid absolute inset-0" />
         </div>
 
         <div className="relative z-10 max-w-xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+          <div className="eyebrow mb-6 inline-flex items-center gap-2 text-clay-300">
             <Mail size={14} />
             Newsletter
           </div>
-          <h2 className="text-3xl font-bold mb-3">Stay ahead of the curve</h2>
-          <p className="text-blue-100 mb-8 text-lg">
-            Get the latest insights on AI, web development, and design — delivered weekly.
+          <h2 className="mb-3 font-display text-3xl font-semibold tracking-[-.04em] sm:text-5xl">Notes worth building on.</h2>
+          <p className="mb-8 text-lg text-stone-300">
+            Get practical construction insights and project updates delivered to your inbox.
             No spam, ever.
           </p>
 
@@ -85,12 +84,12 @@ export default function NewsletterSignup({
                 onChange={(e) => { setEmail(e.target.value); setState('idle'); }}
                 placeholder="Enter your email address"
                 required
-                className="flex-1 px-5 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all"
+                className="flex-1 border border-white/25 bg-white/10 px-5 py-3.5 text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-white/40"
               />
               <button
                 type="submit"
                 disabled={state === 'loading'}
-                className="px-6 py-3.5 bg-white text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all disabled:opacity-70 shrink-0 flex items-center gap-2"
+                className="flex shrink-0 items-center gap-2 bg-accent px-6 py-3.5 font-semibold text-white transition-all hover:bg-[#80371f] disabled:opacity-70"
               >
                 {state === 'loading' ? (
                   <><Loader2 size={16} className="animate-spin" /> Subscribing...</>
@@ -107,7 +106,7 @@ export default function NewsletterSignup({
               {message}
             </div>
           )}
-          <p className="text-blue-300 text-xs mt-4">Join 1,000+ readers. Unsubscribe anytime.</p>
+          <p className="mt-4 text-xs text-stone-500">Occasional project and construction notes. Unsubscribe anytime.</p>
         </div>
       </section>
     );

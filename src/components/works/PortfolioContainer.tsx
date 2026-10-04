@@ -63,7 +63,9 @@ export default function PortfolioContainer({ categories }: PortfolioContainerPro
                     // Mocking missing fields for now to prevent crash if WorkCard is strictly typed
                     // Ideally we fix the API to return these.
                     slug: b.project.slug || '#', // API needs to return slug
-                    category: b.project.category || { name: 'Work' }
+                    categoryId: b.project.category || { name: 'Construction' },
+                    clientName: b.project.clientName,
+                    shortSummary: b.project.shortSummary
                 }));
 
             setLayoutProjects(validProjects);
@@ -104,14 +106,14 @@ export default function PortfolioContainer({ categories }: PortfolioContainerPro
             />
 
             {isLoading ? (
-                <div className="flex justify-center py-20">
-                    <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+                <div className="flex items-center justify-center gap-3 py-24 text-stone-500">
+                    <Loader2 className="h-5 w-5 animate-spin text-accent" /><span className="eyebrow">Loading projects</span>
                 </div>
             ) : projects.length > 0 ? (
                 <WorkGrid projects={projects} />
             ) : (
-                <div className="py-20 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                    <p className="text-gray-500 text-lg">
+                <div className="border-y border-ink/20 py-20">
+                    <p className="font-display text-2xl tracking-[-.03em] text-stone-500">
                         {activeCategory === 'all'
                             ? 'No projects configured in the portfolio layout.'
                             : 'No projects found in this category.'}

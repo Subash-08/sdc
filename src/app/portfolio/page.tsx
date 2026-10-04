@@ -3,6 +3,9 @@ import { fetchProjects } from '@/actions/project.actions';
 import ResponsiveImage from '@/components/shared/ResponsiveImage';
 import Link from 'next/link';
 
+// This legacy compatibility route reads live project data.
+export const dynamic = 'force-dynamic';
+
 export default async function PortfolioPage() {
     const projects = await fetchProjects();
     const publishedProjects = projects.filter((p: any) => p.status === 'published' && p.showInPortfolio);

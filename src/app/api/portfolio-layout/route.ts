@@ -10,6 +10,8 @@ interface SanitizedProject {
     thumbnail: string | null;
     slug?: string;
     category?: any;
+    clientName?: string;
+    shortSummary?: string;
 }
 
 interface SanitizedBox {
@@ -46,7 +48,9 @@ export async function GET() {
                         title: projectDoc.title,
                         thumbnail: projectDoc.coverImage?.url || null, // Assuming coverImage structure
                         slug: projectDoc.slug,
-                        category: projectDoc.categoryId || null // Assuming categoryId is populated or is an object?
+                        category: projectDoc.categoryId || null,
+                        clientName: projectDoc.clientName,
+                        shortSummary: projectDoc.shortSummary
                         // Wait, if categoryId is a ref, we need to populate it too in the main query?
                         // "populate('projectId')" might not populate 'projectId.categoryId'.
                         // We need nested populate: .populate({ path: 'projectId', populate: { path: 'categoryId' } })

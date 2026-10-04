@@ -1,45 +1,25 @@
 import type { Metadata } from 'next';
-import { Inter, Outfit } from 'next/font/google';
+import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import NextTopLoader from 'nextjs-toploader';
 import AuthProvider from '@/components/providers/AuthProvider';
 import { siteConfig } from '@/config/site';
+import ScrollProgress from '@/components/layout/ScrollProgress';
 
-// Fonts
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' });
 
 export const metadata: Metadata = {
-    title: {
-        default: siteConfig.seo.defaultTitle,
-        template: siteConfig.seo.titleTemplate,
-    },
-    description: siteConfig.seo.defaultDescription,
-    icons: {
-        icon: '/favicon.ico',
-    },
+  metadataBase: new URL(siteConfig.url),
+  title: { default: siteConfig.seo.defaultTitle, template: siteConfig.seo.titleTemplate },
+  description: siteConfig.seo.defaultDescription,
+  applicationName: siteConfig.name,
+  icons: { icon: '/favicon.ico' },
+  openGraph: { type: 'website', locale: 'en_IN', siteName: siteConfig.name, title: siteConfig.seo.defaultTitle, description: siteConfig.seo.defaultDescription },
 };
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return (
-        <html lang="en" className={`${inter.variable} ${outfit.variable} scroll-smooth`}>
-            <body className="font-sans antialiased text-gray-900 bg-white">
-                <AuthProvider>
-                    <NextTopLoader color="#2563eb" showSpinner={false} />
-                    <Navbar />
-                    {children}
-                </AuthProvider>
-                <footer className="py-8 bg-gray-50 border-t border-gray-200 mt-20">
-                    <div className="max-w-7xl mx-auto px-6 text-center text-sm text-gray-500">
-                        © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-                    </div>
-                </footer>
-            </body>
-        </html>
-    );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${manrope.variable} scroll-smooth`}><body className="bg-paper font-sans text-ink antialiased"><AuthProvider><NextTopLoader color="#9a4529" showSpinner={false} /><ScrollProgress /><Navbar />{children}<Footer /></AuthProvider></body></html>;
 }

@@ -215,7 +215,8 @@ export async function getBlogs(
   const totalPages = Math.ceil(total / limit);
 
   return {
-    data: data as unknown as IBlog[],
+    // Serialize ObjectIds and dates before crossing a Server/Client boundary.
+    data: JSON.parse(JSON.stringify(data)) as IBlog[],
     pagination: {
       page,
       limit,
@@ -451,15 +452,18 @@ export async function unpublishBlog(id: string): Promise<void> {
 // ============ UTILITY ============
 
 export async function getAllBlogSlugs(): Promise<string[]> {
-  await dbConnect();
-
-  const blogs = await Blog.find({
-    'workflow.status': 'published',
-  })
-    .select('slug')
-    .lean();
-
-  return blogs.map(blog => blog.slug);
+  try {
+    await dbConnect();
+    const blogs = await Blog.find({
+      'workflow.status': 'published',
+    })
+      .select('slug')
+      .lean();
+    return blogs.map(blog => blog.slug);
+  } catch (error) {
+    console.error('[BLOG_SLUGS_ERROR]', error);
+    return [];
+  }
 }
 
 export async function checkSlugAvailability(slug: string, excludeId?: string): Promise<boolean> {

@@ -2,12 +2,18 @@ import { MetadataRoute } from 'next';
 import { getProjects } from '@/services/project.service';
 import { getAllBlogSlugs } from '@/services/blogService';
 import { env } from '@/config/env';
+import { services } from '@/config/services';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = env.NEXT_PUBLIC_APP_URL || 'https://yourdomain.com';
 
-  const projectsResponse = await getProjects({ status: 'published', limit: 1000 });
-  const projects = projectsResponse.data;
+  let projects: Awaited<ReturnType<typeof getProjects>>['data'] = [];
+  try {
+    const projectsResponse = await getProjects({ status: 'published', limit: 1000 });
+    projects = projectsResponse.data;
+  } catch (error) {
+    console.error('[SITEMAP_PROJECTS_ERROR]', error);
+  }
 
   const projectUrls = projects.map((project) => ({
     url: `${baseUrl}/works/${project.slug}`,
@@ -44,6 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -57,6 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...projectUrls,
     ...blogUrls,
+    ...services.map((service) => ({ url: `${baseUrl}/services/${service.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
   ];
 }
 

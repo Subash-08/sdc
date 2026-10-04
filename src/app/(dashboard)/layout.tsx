@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { NAV_ITEMS } from "@/constants";
 
+// Dashboard pages use authenticated, live database data and must not prerender.
+export const dynamic = 'force-dynamic';
+
 export default function DashboardLayout({
     children,
 }: {

@@ -1,53 +1,36 @@
-import Container from '@/components/layout/Container';
+import Image from 'next/image';
 import PortfolioContainer from '@/components/works/PortfolioContainer';
+import Reveal from '@/components/home/Reveal';
+import ImageReveal from '@/components/home/ImageReveal';
 import { generateSEO } from '@/lib/seo';
 import dbConnect from '@/lib/dbConnect';
 import Category from '@/models/Category';
 
-export const metadata = generateSEO({
-    title: 'Works',
-    description: 'Explore my portfolio of web development projects, SaaS applications, and digital products.',
-    keywords: ['portfolio', 'projects', 'case studies', 'web development'],
-});
+export const metadata = generateSEO({ title: 'Construction Projects', description: 'Explore selected residential, commercial and industrial projects from Shree Dhurga Constructions.', keywords: ['construction projects', 'Hosur construction', 'commercial buildings', 'industrial construction'] });
+export const revalidate = 3600;
 
-export const revalidate = 3600; // 1 hour
-
-// Fetch categories for the tabs
 async function getCategories() {
-    try {
-        await dbConnect();
-        const categories = await Category.find().sort({ name: 1 }).lean();
-        return JSON.parse(JSON.stringify(categories));
-    } catch (error) {
-        console.error('Error fetching categories:', error);
-        return [];
-    }
+  try {
+    await dbConnect();
+    return JSON.parse(JSON.stringify(await Category.find().sort({ name: 1 }).lean()));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
 }
 
 export default async function WorksPage() {
-    // We still fetch initial projects if needed, or we rely on PortfolioContainer's internal logic.
-    // The plan says "Fetch Layout Boxes for All tab" inside the container (or passed as prop).
-    // But PortfolioContainer is client-side, so it can fetch on mount.
-    // However, for SEO, we might want initial data?
-    // The user requirement "Render layout exactly as defined" implies strict order.
-    // Client-side fetch is fine for the sophisticated layout logic if we accept a loading state.
-    // The previous implementation of `page.tsx` was Server Component.
-
-    const categories = await getCategories();
-
-    return (
-        <main className="pt-32 pb-20">
-            <Container>
-                <div className="max-w-3xl mb-16">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Selected Works</h1>
-                    <p className="text-xl text-gray-600 leading-relaxed">
-                        A curated list of projects I've worked on, ranging from complex SaaS dashboards to high-performance marketing websites.
-                    </p>
-                </div>
-
-
-                <PortfolioContainer categories={categories} />
-            </Container>
-        </main>
-    );
+  const categories = await getCategories();
+  return (
+    <main className="bg-paper">
+      <section className="page-hero bg-ink text-white">
+        <div className="site-shell grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-end">
+          <Reveal><p className="eyebrow text-clay-300">Selected work · Hosur</p><h1 className="page-title mt-6">Proof, built<br />at full scale.</h1></Reveal>
+          <Reveal delay={.1}><p className="body-large max-w-xl text-stone-300">A record of residential, commercial and industrial projects shaped by their site, purpose and the people who use them.</p></Reveal>
+        </div>
+        <div className="site-shell mt-14 lg:mt-20"><ImageReveal className="relative aspect-[16/6] min-h-[280px]"><Image src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=85" alt="Contemporary construction project" fill priority sizes="100vw" className="object-cover" /></ImageReveal></div>
+      </section>
+      <section className="section"><div className="site-shell"><div className="mb-12 flex items-end justify-between border-b border-ink/20 pb-5"><p className="eyebrow text-accent">Project index</p><p className="hidden text-sm text-stone-500 sm:block">Browse by discipline</p></div><PortfolioContainer categories={categories} /></div></section>
+    </main>
+  );
 }

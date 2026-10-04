@@ -18,7 +18,7 @@ export default function BlogStructuredData({ blog }: Props) {
     author: { '@type': 'Person', name: blog.author },
     publisher: {
       '@type': 'Organization',
-      name: 'Your Portfolio',
+      name: 'Shree Dhurga Constructions',
       logo: { '@type': 'ImageObject', url: `${baseUrl}/logo.png` },
     },
     description: blog.seo?.metaDescription,

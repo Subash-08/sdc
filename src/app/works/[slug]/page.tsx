@@ -108,7 +108,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     results={project.metrics}
                 />
             )}
-            <article className="pb-32 bg-white">
+            <article className="bg-paper pb-32">
                 {/* 1. Hero Section */}
                 <CaseStudyHero project={project} />
 
@@ -118,8 +118,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                         <div className="lg:col-span-7 space-y-12">
                             <div>
-                                <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-6">Overview</h2>
-                                <h3 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+                                <h2 className="eyebrow mb-6 text-accent">Overview</h2>
+                                <h3 className="mb-8 font-display text-3xl font-semibold leading-tight tracking-[-.05em] text-ink md:text-5xl">
                                     {project.shortSummary}
                                 </h3>
                                 <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
@@ -128,9 +128,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                             </div>
 
                             {project.problemStatement && (
-                                <div className="bg-orange-50/50 p-10 rounded-3xl border border-orange-100">
-                                    <h4 className="flex items-center text-xl font-bold text-orange-900 mb-4">
-                                        <span className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mr-3 text-sm">!</span>
+                                <div className="border-l-2 border-accent bg-stone-100 p-10">
+                                    <h4 className="mb-4 flex items-center text-xl font-bold text-ink">
+                                        <span className="mr-3 grid h-8 w-8 place-items-center border border-accent text-sm text-accent">!</span>
                                         The Challenge
                                     </h4>
                                     <p className="text-gray-700 text-lg leading-relaxed">{project.problemStatement}</p>
@@ -152,7 +152,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                         </div>
 
                         <div className="lg:col-span-4 lg:col-start-9 space-y-12">
-                            <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                            <div className="border-t border-ink/20 bg-stone-100 p-8">
                                 <h4 className="font-bold text-gray-900 mb-6 text-xl">Technologies</h4>
                                 <CaseStudyTechStack techStack={project.techStack} />
                             </div>
@@ -176,11 +176,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
             {/* 3. Gallery (Full Width Impact) */}
             {project.galleryImages && project.galleryImages.length > 0 && (
-                <section className="py-20 bg-gray-50">
+                <section className="bg-stone-100 py-20">
                     <Container>
                         <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">Gallery</h2>
-                            <h3 className="text-3xl md:text-4xl font-bold text-gray-900">Visual Highlights</h3>
+                            <h2 className="eyebrow mb-3 text-accent">Gallery</h2>
+                            <h3 className="font-display text-3xl font-semibold tracking-[-.04em] text-ink md:text-4xl">Visual highlights</h3>
                         </div>
                         <CaseStudyGallery images={project.galleryImages} />
                     </Container>
@@ -192,8 +192,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <section className="py-24 lg:py-32 overflow-hidden">
                     <Container>
                         <div className="text-center max-w-3xl mx-auto mb-20">
-                            <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">Process</h2>
-                            <h3 className="text-4xl md:text-5xl font-bold text-gray-900">How we made it happen</h3>
+                            <h2 className="eyebrow mb-3 text-accent">Process</h2>
+                            <h3 className="font-display text-4xl font-semibold tracking-[-.05em] text-ink md:text-5xl">How the work came together</h3>
                         </div>
                         <CaseStudyProcess steps={project.processSteps} />
                     </Container>
@@ -201,7 +201,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
             )}
 
             {/* 5. Results & Validation (Dark Theme) */}
-            <section className="py-24 bg-[#0B1120] text-white relative overflow-hidden">
+            <section className="relative overflow-hidden bg-ink py-24 text-white">
                 {/* Abstract bg shapes */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2" />
@@ -211,10 +211,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 <Container className="relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div>
-                            <h2 className="text-sm font-bold text-blue-400 uppercase tracking-widest mb-3">Results</h2>
-                            <h3 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">Impact & Outcomes</h3>
+                            <h2 className="eyebrow mb-3 text-clay-300">Results</h2>
+                            <h3 className="mb-8 font-display text-4xl font-semibold leading-tight tracking-[-.05em] md:text-5xl">Impact & outcomes</h3>
                             <p className="text-gray-300 text-xl leading-relaxed mb-12 font-light">
-                                The solution delivered measurable improvements and satisfied users, proving the value of the design and engineering choices.
+                                The completed project brings the brief, construction decisions and final delivery into one coherent result.
                             </p>
                             <CaseStudyMetrics metrics={project.metrics} />
                         </div>
@@ -229,10 +229,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {project.solution && project.solution.length > 0 && (
                 <section className="py-24">
                     <Container>
-                        <div className="bg-emerald-50/50 rounded-3xl p-12 border border-emerald-100">
+                        <div className="border-y border-ink/20 bg-stone-100 p-12">
                             <div className="text-center max-w-3xl mx-auto mb-12">
-                                <h3 className="text-3xl font-bold text-emerald-900">Key Solutions</h3>
-                                <p className="text-emerald-700 mt-2">Specific features and implementations that solved the problem.</p>
+                                <h3 className="font-display text-3xl font-semibold tracking-[-.04em] text-ink">Key solutions</h3>
+                                <p className="mt-2 text-stone-600">The project decisions that responded to the brief.</p>
                             </div>
 
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">

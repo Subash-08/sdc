@@ -1,144 +1,50 @@
-import { Suspense } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { getBlogs } from '@/services/blogService';
 import { getAllBlogCategories } from '@/services/blogCategoryService';
 import BlogCard from '@/components/blog/BlogCard';
 import { generateSEO } from '@/lib/seo';
 import NewsletterSignup from '@/components/blog/NewsletterSignup';
+import Reveal from '@/components/home/Reveal';
+import type { IBlog } from '@/types/blog';
 
 export const revalidate = 3600;
-
-interface PageProps {
-  searchParams: Promise<{
-    page?: string;
-    category?: string;
-  }>;
-}
+interface PageProps { searchParams: Promise<{ page?: string; category?: string }>; }
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const { category } = await searchParams;
-
   if (category) {
     const name = category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' ');
-    return generateSEO({
-      title: `${name} Blog Posts`,
-      description: `Read our latest articles about ${category.replace(/-/g, ' ')}`,
-      url: `/blog?category=${category}`,
-    });
+    return generateSEO({ title: `${name} Blog Posts`, description: `Read our latest articles about ${category.replace(/-/g, ' ')}`, url: `/blog?category=${category}` });
   }
+  return generateSEO({ title: 'Construction Journal', description: 'Construction ideas, project insights and practical guidance from Shree Dhurga Constructions.', url: '/blog' });
+}
 
-  return generateSEO({
-    title: 'Blog',
-    description: 'Read our latest articles on web development, SEO, design, and technology',
-    url: '/blog',
-  });
+async function loadJournal(page: number, categorySlug?: string) {
+  try {
+    const [blogsData, categories] = await Promise.all([getBlogs({ page, limit: 10, status: 'published', categorySlug }), getAllBlogCategories()]);
+    return { ...blogsData, categories };
+  } catch (error) {
+    console.error('[BLOG_PAGE_ERROR]', error);
+    return { data: [] as IBlog[], pagination: { page, limit: 10, total: 0, totalPages: 0, hasMore: false }, categories: [] as any[] };
+  }
 }
 
 export default async function BlogPage({ searchParams }: PageProps) {
   const { page: pageParam, category: categorySlug } = await searchParams;
   const page = Number(pageParam) || 1;
+  const { data: blogs, pagination, categories } = await loadJournal(page, categorySlug);
 
-  const [blogsData, categories] = await Promise.all([
-    getBlogs({ page, limit: 12, status: 'published', categorySlug }),
-    getAllBlogCategories(),
-  ]);
-
-  const { data: blogs, pagination } = blogsData;
-
-  return (
-    <main className="min-h-screen bg-gray-50">
-      {/* Hero */}
-      <section className="bg-white border-b border-gray-100 py-16">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Blog</h1>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            Insights, tutorials, and best practices for modern web development
-          </p>
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <div className="bg-white border-b border-gray-100 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex gap-2 py-3 overflow-x-auto scrollbar-hide">
-            <Link
-              href="/blog"
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                !categorySlug ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              All Posts
-            </Link>
-            {categories.map((category) => (
-              <Link
-                key={category._id?.toString()}
-                href={`/blog?category=${category.slug}`}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  categorySlug === category.slug
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {category.name}
-                {category.blogCount > 0 && (
-                  <span className="ml-1.5 text-xs opacity-70">({category.blogCount})</span>
-                )}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Blog Grid */}
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        {blogs.length === 0 ? (
-          <div className="text-center py-24">
-            <p className="text-gray-400 text-lg mb-4">No blog posts found.</p>
-            <Link href="/blog" className="text-blue-600 hover:underline text-sm font-medium">
-              View all posts →
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogs.map((blog) => (
-                <BlogCard key={blog.slug} blog={blog} />
-              ))}
-            </div>
-
-            {/* Pagination */}
-            {pagination.totalPages > 1 && (
-              <div className="flex justify-center items-center gap-3 mt-12">
-                {page > 1 && (
-                  <Link
-                    href={`/blog?page=${page - 1}${categorySlug ? `&category=${categorySlug}` : ''}`}
-                    className="px-5 py-2.5 border border-gray-300 rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors"
-                  >
-                    ← Previous
-                  </Link>
-                )}
-                <span className="text-sm text-gray-500">
-                  Page {page} of {pagination.totalPages}
-                </span>
-                {pagination.hasMore && (
-                  <Link
-                    href={`/blog?page=${page + 1}${categorySlug ? `&category=${categorySlug}` : ''}`}
-                    className="px-5 py-2.5 border border-gray-300 rounded-xl text-sm font-medium hover:bg-gray-50 transition-colors"
-                  >
-                    Next →
-                  </Link>
-                )}
-              </div>
-            )}
-          </>
-        )}
-      </div>
-
-      {/* Newsletter CTA */}
-      <div className="max-w-5xl mx-auto px-4 pb-16">
-        <NewsletterSignup variant="hero" source="blog-listing" />
-      </div>
-    </main>
-  );
+  return <main className="bg-paper">
+    <section className="page-hero bg-ink text-white"><div className="site-shell grid gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end"><Reveal><p className="eyebrow text-clay-300">Notes from the field</p><h1 className="page-title mt-6">The construction<br />journal.</h1></Reveal><Reveal delay={.1}><p className="body-large max-w-xl text-stone-300">Clear thinking on materials, planning and the decisions that turn ambitious briefs into enduring places.</p></Reveal></div></section>
+    <div className="sticky top-[76px] z-20 border-b border-ink/15 bg-paper/95 backdrop-blur-lg lg:top-[88px]"><div className="site-shell no-scrollbar flex overflow-x-auto"><Link href="/blog" className={`journal-filter ${!categorySlug ? 'journal-filter--active' : ''}`}>All notes</Link>{categories.map((category) => <Link key={category._id?.toString()} href={`/blog?category=${category.slug}`} className={`journal-filter ${categorySlug === category.slug ? 'journal-filter--active' : ''}`}>{category.name}<sup>{category.blogCount || ''}</sup></Link>)}</div></div>
+    <section className="section"><div className="site-shell">
+      {blogs.length === 0 ? <div className="border-y border-ink/20 py-24"><p className="eyebrow text-accent">Journal archive</p><h2 className="mt-5 font-display text-3xl tracking-[-.04em] text-stone-500">New field notes are being prepared.</h2>{categorySlug && <Link href="/blog" className="text-link mt-8">View all notes <ArrowRight size={15} /></Link>}</div> : <>
+        <div className="grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-2 lg:grid-cols-3">{blogs.map((blog, index) => <BlogCard key={blog.slug} blog={blog} featured={index === 0 && page === 1 && !categorySlug} index={index} />)}</div>
+        {pagination.totalPages > 1 && <nav className="mt-20 flex items-center justify-between border-t border-ink/20 pt-6" aria-label="Blog pages">{page > 1 ? <Link href={`/blog?page=${page - 1}${categorySlug ? `&category=${categorySlug}` : ''}`} className="text-link"><ArrowLeft size={15} /> Previous</Link> : <span /> }<span className="eyebrow text-stone-400">{page} / {pagination.totalPages}</span>{pagination.hasMore && <Link href={`/blog?page=${page + 1}${categorySlug ? `&category=${categorySlug}` : ''}`} className="text-link">Next <ArrowRight size={15} /></Link>}</nav>}
+      </>}
+    </div></section>
+    <section className="site-shell pb-20 sm:pb-28"><NewsletterSignup variant="hero" source="blog-listing" /></section>
+  </main>;
 }

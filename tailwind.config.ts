@@ -15,7 +15,16 @@ const config: Config = {
             },
         },
         extend: {
+            fontFamily: {
+                sans: ["var(--font-inter)", "sans-serif"],
+                display: ["var(--font-manrope)", "sans-serif"],
+            },
             colors: {
+                ink: "#111210",
+                paper: "#f6f3ec",
+                clay: {
+                    300: "#d8a48e",
+                },
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",

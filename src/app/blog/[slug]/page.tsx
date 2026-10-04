@@ -18,6 +18,8 @@ import FeaturedSnippet from '@/components/blog/FeaturedSnippet';
 import RelatedPosts from '@/components/blog/RelatedPosts';
 import ShareButtons from '@/components/blog/ShareButtons';
 import NewsletterSignup from '@/components/blog/NewsletterSignup';
+import ImageReveal from '@/components/home/ImageReveal';
+import Reveal from '@/components/home/Reveal';
 
 export const revalidate = 3600;
 
@@ -79,13 +81,14 @@ export default async function BlogDetailPage({ params }: PageProps) {
         }} 
       />
 
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-paper">
         {/* Hero */}
-        <div className="bg-gray-50 border-b border-gray-100 py-12">
-          <div className="max-w-5xl mx-auto px-4">
+        <div className="bg-ink pb-20 pt-36 text-white sm:pb-28 sm:pt-44">
+          <div className="site-shell max-w-6xl">
+            <Reveal>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors"
+              className="mb-10 inline-flex items-center gap-2 text-sm text-stone-400 transition-colors hover:text-white"
             >
               <ArrowLeft size={16} />
               Back to Blog
@@ -93,16 +96,16 @@ export default async function BlogDetailPage({ params }: PageProps) {
 
             <Link
               href={`/blog?category=${blog.category?.slug}`}
-              className="inline-block text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full mb-4 transition-colors"
+              className="eyebrow mb-5 inline-block text-clay-300 transition-colors hover:text-white"
             >
               {blog.category?.name}
             </Link>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6 blog-title">
+            <h1 className="blog-title max-w-5xl font-display text-4xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl lg:text-7xl">
               {blog.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-5 text-sm text-gray-500">
+            <div className="mt-8 flex flex-wrap items-center gap-5 text-sm text-stone-400">
               <span className="flex items-center gap-1.5">
                 <Calendar size={15} />
                 {blog.workflow?.publishedAt
@@ -113,15 +116,16 @@ export default async function BlogDetailPage({ params }: PageProps) {
                 <Clock size={15} />
                 {blog.seoMetrics?.readingTime ?? 1} min read
               </span>
-              <span className="font-medium text-gray-700">By {blog.author}</span>
+              <span className="font-medium text-stone-200">By {blog.author}</span>
             </div>
+            </Reveal>
           </div>
         </div>
 
         {/* Featured Image */}
         {blog.featuredImage?.url && (
-          <div className="max-w-5xl mx-auto px-4 -mt-0 pt-8">
-            <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden bg-gray-100">
+          <div className="site-shell max-w-6xl pt-10">
+            <ImageReveal className="relative aspect-[21/9] min-h-[260px] w-full overflow-hidden bg-stone-200">
               <Image
                 src={blog.featuredImage.url}
                 alt={blog.featuredImage.alt || blog.title}
@@ -129,12 +133,12 @@ export default async function BlogDetailPage({ params }: PageProps) {
                 className="object-cover"
                 priority
               />
-            </div>
+            </ImageReveal>
           </div>
         )}
 
         {/* Main Content */}
-        <div className="max-w-5xl mx-auto px-4 py-12">
+        <div className="site-shell max-w-6xl py-16 sm:py-24">
           <div className="flex gap-10">
             {/* TOC Sidebar */}
             {toc.length > 0 && (
@@ -147,7 +151,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <article className="flex-1 min-w-0">
               {/* Excerpt */}
               {blog.excerpt && (
-                <p className="text-xl text-gray-500 leading-relaxed mb-8 pb-8 border-b border-gray-100 font-light blog-excerpt">
+                <p className="blog-excerpt mb-10 border-b border-ink/20 pb-10 font-display text-xl leading-relaxed tracking-[-.02em] text-stone-600 sm:text-2xl">
                   {blog.excerpt.replace(/<[^>]*>/g, '')}
                 </p>
               )}
@@ -180,7 +184,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
                   {blog.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-gray-200 transition-colors"
+                    className="border border-ink/20 px-3 py-1 text-xs font-medium text-stone-600 transition-colors hover:border-accent hover:text-accent"
                     >
                       {tag}
                     </span>

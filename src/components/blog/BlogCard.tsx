@@ -1,67 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import { Clock, Calendar } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import type { IBlog } from '@/types/blog';
+import Reveal from '@/components/home/Reveal';
+import ImageReveal from '@/components/home/ImageReveal';
 
-interface BlogCardProps {
-  blog: IBlog;
-}
-
-export default function BlogCard({ blog }: BlogCardProps) {
-  return (
-    <article className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col">
-      {/* Featured Image */}
-      {blog.featuredImage?.url && (
-        <Link href={`/blog/${blog.slug}`} className="block overflow-hidden aspect-[16/9] relative bg-gray-100">
-          <Image
-            src={blog.featuredImage.url}
-            alt={blog.featuredImage.alt || blog.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </Link>
-      )}
-
-      {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
-        {/* Category Badge */}
-        <Link
-          href={`/blog?category=${blog.category?.slug}`}
-          className="inline-block text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full mb-3 w-fit transition-colors"
-        >
-          {blog.category?.name}
-        </Link>
-
-        {/* Title */}
-        <Link href={`/blog/${blog.slug}`} className="group/title flex-1">
-          <h2 className="text-lg font-bold text-gray-900 group-hover/title:text-blue-600 transition-colors line-clamp-2 mb-3">
-            {blog.title}
-          </h2>
-        </Link>
-
-        {/* Excerpt */}
-        <p className="text-gray-500 text-sm line-clamp-2 mb-4 flex-1">
-          {blog.excerpt?.replace(/<[^>]*>/g, '')}
-        </p>
-
-        {/* Meta Info */}
-        <div className="flex items-center gap-4 text-xs text-gray-400 pt-4 border-t border-gray-100">
-          <span className="flex items-center gap-1.5">
-            <Calendar size={13} />
-            {blog.workflow?.publishedAt
-              ? format(new Date(blog.workflow.publishedAt), 'MMM d, yyyy')
-              : 'Unpublished'}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Clock size={13} />
-            {blog.seoMetrics?.readingTime ?? 1} min read
-          </span>
-          <span className="ml-auto font-medium text-gray-500 truncate">
-            {blog.author}
-          </span>
-        </div>
-      </div>
-    </article>
-  );
+export default function BlogCard({ blog, featured = false, index = 0 }: { blog: IBlog; featured?: boolean; index?: number }) {
+  return <Reveal delay={(index % 3) * .05} className={featured ? 'md:col-span-2' : ''}><article className="insight-entry group">
+    {blog.featuredImage?.url && <Link href={`/blog/${blog.slug}`} className="block"><ImageReveal className={`relative overflow-hidden bg-stone-200 ${featured ? 'aspect-[16/8]' : 'aspect-[4/3]'}`}><Image src={blog.featuredImage.url} alt={blog.featuredImage.alt || blog.title} fill sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'} className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.035]" /></ImageReveal></Link>}
+    <div className="mt-5 border-t border-ink/20 pt-4">
+      <div className="flex items-center justify-between gap-4"><Link href={`/blog?category=${blog.category?.slug}`} className="project-meta">{blog.category?.name || 'Field notes'}</Link><span className="text-xs text-stone-400">{blog.workflow?.publishedAt ? format(new Date(blog.workflow.publishedAt), 'dd.MM.yyyy') : 'Draft'}</span></div>
+      <Link href={`/blog/${blog.slug}`} className="mt-3 flex items-start justify-between gap-5"><h2 className={`font-display font-semibold leading-[1.08] tracking-[-.045em] transition-colors group-hover:text-accent ${featured ? 'text-3xl sm:text-5xl' : 'text-2xl'}`}>{blog.title}</h2><ArrowUpRight className="mt-1 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></Link>
+      {blog.excerpt && <p className="mt-4 max-w-2xl text-sm leading-6 text-stone-500 line-clamp-3">{blog.excerpt.replace(/<[^>]*>/g, '')}</p>}
+      <p className="mt-5 text-[11px] uppercase tracking-[.12em] text-stone-400">{blog.seoMetrics?.readingTime ?? 1} min read · {blog.author}</p>
+    </div>
+  </article></Reveal>;
 }

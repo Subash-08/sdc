@@ -1,6 +1,5 @@
-import { Metadata } from 'next';
-
-const defaultUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://yourdomain.com';
+import type { Metadata } from 'next';
+import { siteConfig } from '@/config/site';
 
 interface SEOProps {
   title: string;
@@ -13,60 +12,16 @@ interface SEOProps {
   modifiedTime?: string;
 }
 
-export function generateSEO({
-  title,
-  description,
-  url = defaultUrl,
-  image = '/og-default.png',
-  keywords = [],
-  type = 'website',
-  publishedTime,
-  modifiedTime,
-}: SEOProps): Metadata {
-  const siteName = 'Your Portfolio Name';
-  const fullTitle = `${title} | ${siteName}`;
-
+export function generateSEO({ title, description, url = '/', image = siteConfig.seo.defaultImage, keywords = [], type = 'website', publishedTime, modifiedTime }: SEOProps): Metadata {
+  const absoluteUrl = url.startsWith('http') ? url : new URL(url, siteConfig.url).toString();
+  const absoluteImage = image.startsWith('http') ? image : new URL(image, siteConfig.url).toString();
   return {
-    title: fullTitle,
+    title,
     description,
     keywords,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url,
-      siteName,
-      images: [
-        {
-          url: image.startsWith('http') ? image : `${defaultUrl}${image}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-      type,
-      ...(type === 'article' && publishedTime ? { publishedTime } : {}),
-      ...(type === 'article' && modifiedTime ? { modifiedTime } : {}),
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: fullTitle,
-      description,
-      creator: '@yourtwitterhandle',
-      images: [image.startsWith('http') ? image : `${defaultUrl}${image}`],
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
+    alternates: { canonical: absoluteUrl },
+    openGraph: { title, description, url: absoluteUrl, siteName: siteConfig.name, images: [{ url: absoluteImage, width: 1200, height: 630, alt: title }], type, ...(type === 'article' && publishedTime ? { publishedTime } : {}), ...(type === 'article' && modifiedTime ? { modifiedTime } : {}) },
+    twitter: { card: 'summary_large_image', title, description, images: [absoluteImage] },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
   };
 }

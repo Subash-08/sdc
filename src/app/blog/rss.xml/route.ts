@@ -8,9 +8,9 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>Your Portfolio Blog</title>
+    <title>Shree Dhurga Constructions Insights</title>
     <link>${baseUrl}/blog</link>
-    <description>Latest articles on web development, SEO, and technology</description>
+    <description>Construction ideas, project insights and practical guidance from the field.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/blog/rss.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom"/>
