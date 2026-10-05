@@ -8,10 +8,10 @@ export default function ImageReveal({ children, className = '' }: { children: Re
   return (
     <motion.div
       className={className}
-      initial={reduced ? false : { clipPath: 'inset(0 0 100% 0)', scale: 1.04 }}
-      whileInView={reduced ? undefined : { clipPath: 'inset(0 0 0% 0)', scale: 1 }}
+      initial={reduced ? false : { opacity: .45, scale: 1.025 }}
+      whileInView={reduced ? undefined : { opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.18 }}
-      transition={{ clipPath: { duration: .95, ease: [0.22, 1, 0.36, 1] }, scale: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }}
+      transition={{ opacity: { duration: .7, ease: [0.22, 1, 0.36, 1] }, scale: { duration: 1.05, ease: [0.22, 1, 0.36, 1] } }}
     >
       {children}
     </motion.div>

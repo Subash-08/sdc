@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, FolderKanban, FileText, LayoutGrid, FolderTree,
-  LogOut, PlusCircle, Inbox, Trash2, Tags, ChevronDown, ChevronRight, Mail,
+  LogOut, PlusCircle, Inbox, Trash2, Tags, ChevronDown, ChevronRight, Mail, ExternalLink,
 } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { useState } from 'react';
@@ -33,16 +33,15 @@ const Sidebar = () => {
     exact ? pathname === href : pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
-    <div className="w-60 bg-white border-r border-gray-200 flex flex-col h-full shrink-0">
+    <aside className="flex h-full w-20 shrink-0 flex-col border-r border-white/10 bg-[#111210] text-white md:w-72">
       {/* Brand */}
-      <div className="h-16 flex items-center px-5 border-b border-gray-100">
-        <h1 className="text-lg font-bold tracking-tight text-gray-900">
-          Admin<span className="text-blue-600">Panel</span>
-        </h1>
+      <div className="flex min-h-24 items-center gap-3 border-b border-white/10 px-4 md:px-6">
+        <span className="grid h-11 w-11 shrink-0 place-items-center border border-white/50 text-[10px] font-bold tracking-[.14em]">SDC</span>
+        <div className="hidden md:block"><p className="text-sm font-semibold uppercase leading-tight tracking-[-.02em]">Shree Dhurga<br />Constructions</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.18em] text-[#d8a48e]">Content studio</p></div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-5">
         {topLinks.map((link) => {
           const Icon = link.icon;
           const active = pathname === link.href || pathname?.startsWith(`${link.href}/`);
@@ -50,12 +49,12 @@ const Sidebar = () => {
             <Link
               key={link.href}
               href={link.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
-                active ? 'bg-blue-600 text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+              className={`flex min-h-11 items-center gap-3 border px-3 text-sm font-medium transition-all duration-200 ${
+                active ? 'border-[#d8a48e] bg-[#9a4529] text-white' : 'border-transparent text-stone-400 hover:border-white/15 hover:bg-white/5 hover:text-white'
               }`}
             >
               <Icon size={17} className="shrink-0" />
-              <span className="truncate">{link.label}</span>
+              <span className="hidden truncate md:block">{link.label}</span>
             </Link>
           );
         })}
@@ -64,21 +63,21 @@ const Sidebar = () => {
         <div>
           <button
             onClick={() => setBlogExpanded((p) => !p)}
-            className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+            className={`flex min-h-11 w-full items-center justify-between gap-3 border px-3 text-sm font-medium transition-all duration-200 ${
               pathname?.startsWith('/admin/blogs')
-                ? 'bg-blue-50 text-blue-700'
-                : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                ? 'border-[#d8a48e] bg-white/10 text-white'
+                : 'border-transparent text-stone-400 hover:border-white/15 hover:bg-white/5 hover:text-white'
             }`}
           >
             <div className="flex items-center gap-3">
               <FileText size={17} className="shrink-0" />
-              <span>Blogs</span>
+              <span className="hidden md:block">Journal</span>
             </div>
-            {blogExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+            <span className="hidden md:block">{blogExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}</span>
           </button>
 
           {blogExpanded && (
-            <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-gray-100 pl-3">
+            <div className="ml-5 mt-2 hidden space-y-1 border-l border-white/15 pl-3 md:block">
               {blogLinks.map((link) => {
                 const Icon = link.icon;
                 const active = isLinkActive(link.href, link.exact);
@@ -86,8 +85,8 @@ const Sidebar = () => {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                      active ? 'bg-blue-600 text-white shadow-sm' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
+                    className={`flex items-center gap-2.5 px-3 py-2 text-sm font-medium transition-all duration-150 ${
+                      active ? 'bg-[#9a4529] text-white' : 'text-stone-500 hover:bg-white/5 hover:text-white'
                     }`}
                   >
                     <Icon size={15} className="shrink-0" />
@@ -101,16 +100,17 @@ const Sidebar = () => {
       </nav>
 
       {/* Logout */}
-      <div className="px-3 py-4 border-t border-gray-100">
+      <div className="space-y-1 border-t border-white/10 px-3 py-4">
+        <Link href="/" className="flex min-h-11 w-full items-center gap-3 border border-transparent px-3 text-sm font-medium text-stone-400 transition hover:border-white/15 hover:text-white"><ExternalLink size={17} /><span className="hidden md:block">View website</span></Link>
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-rose-600 hover:bg-rose-50 hover:text-rose-700 transition-all duration-150"
+          className="flex min-h-11 w-full items-center gap-3 border border-transparent px-3 text-sm font-medium text-[#d8a48e] transition hover:border-[#9a4529] hover:bg-[#9a4529]/20"
         >
           <LogOut size={17} className="shrink-0" />
-          <span>Logout</span>
+          <span className="hidden md:block">Logout</span>
         </button>
       </div>
-    </div>
+    </aside>
   );
 };
 

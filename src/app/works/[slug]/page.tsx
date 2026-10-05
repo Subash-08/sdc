@@ -44,6 +44,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <article className="bg-paper">
       <CaseStudyHero project={project} />
 
+      {project.galleryImages?.length > 0 && <section id="project-gallery" className="section bg-stone-100"><div className="site-shell"><Reveal className="mb-10 grid gap-6 md:grid-cols-2 md:items-end"><div><p className="eyebrow text-accent">Project gallery</p><h2 className="display-heading mt-5">The work,<br />in view.</h2></div><p className="max-w-lg text-stone-600 md:justify-self-end">A closer look at the spatial character, material relationships and construction details represented in this project study.</p></Reveal><CaseStudyGallery images={project.galleryImages} /></div></section>}
+
       <section className="section">
         <div className="site-shell grid gap-16 lg:grid-cols-[1.2fr_.8fr]">
           <Reveal><p className="eyebrow text-accent">Project reading</p><h2 className="case-lead mt-6">{project.overview || project.shortSummary}</h2><p className="mt-9 max-w-3xl text-lg leading-8 text-stone-600">{project.description}</p></Reveal>
@@ -52,8 +54,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {project.problemStatement && <section className="case-challenge"><div className="site-shell grid gap-12 lg:grid-cols-[.55fr_1.45fr]"><Reveal><p className="eyebrow text-clay-300">The construction question</p></Reveal><Reveal delay={.08}><h2>{project.problemStatement}</h2>{project.objectives && <p>{project.objectives}</p>}</Reveal></div></section>}
-
-      {project.galleryImages?.length > 0 && <section className="section bg-stone-100"><div className="site-shell"><Reveal className="mb-14 grid gap-6 md:grid-cols-2 md:items-end"><div><p className="eyebrow text-accent">Project plates</p><h2 className="display-heading mt-5">Material, space<br />and assembly.</h2></div><p className="max-w-lg text-stone-600 md:justify-self-end">A visual record of the decisions, surfaces and spatial relationships that define the work.</p></Reveal><CaseStudyGallery images={project.galleryImages} /></div></section>}
 
       {project.processSteps?.length > 0 && <section className="section"><div className="site-shell"><Reveal className="mb-16 max-w-4xl"><p className="eyebrow text-accent">Construction sequence</p><h2 className="display-heading mt-5">From first reading<br />to final handover.</h2></Reveal><CaseStudyProcess steps={project.processSteps} /></div></section>}
 

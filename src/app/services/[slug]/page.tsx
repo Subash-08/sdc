@@ -26,6 +26,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   if (!service) notFound();
   const currentIndex = services.findIndex((item) => item.slug === service.slug);
   const next = services[(currentIndex + 1) % services.length];
+  const projectLenses = [
+    ['01', 'Use', `How the ${service.shortTitle.toLowerCase()} work needs to perform every day.`],
+    ['02', 'Site', 'Access, exposure, existing conditions and the constraints that shape delivery.'],
+    ['03', 'Buildability', 'A practical sequence that connects materials, trades and important junctions.'],
+  ];
+  const coordinationChecks = [
+    ['Scope definition', 'What is included, where responsibilities meet and what must be resolved first.'],
+    ['Material direction', 'Selections considered for use, exposure, upkeep and the character of the finished work.'],
+    ['Site sequence', 'Access, trade order and review points arranged into a legible construction path.'],
+    ['Handover readiness', 'Finishing, inspection and close-out information gathered before completion.'],
+  ];
 
   return (
     <main className="bg-paper">
@@ -47,12 +58,18 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       </section>
 
       <section className="site-shell pb-10 sm:pb-16">
-        <ImageReveal className="relative min-h-[55vh] overflow-hidden"><Image src={service.secondaryImage} alt={`${service.title} work`} fill sizes="100vw" className="object-cover" /></ImageReveal>
+        <ImageReveal className="relative aspect-[16/8] overflow-hidden"><Image src={service.secondaryImage} alt={`${service.title} work`} fill sizes="100vw" className="object-cover" /></ImageReveal>
       </section>
+
+      <section className="border-y border-ink/20 bg-clay-200"><div className="site-shell grid md:grid-cols-3">{projectLenses.map(([index, title, text]) => <Reveal key={title} className="service-lens"><span>{index}</span><h2>{title}</h2><p>{text}</p></Reveal>)}</div></section>
 
       <section className="section bg-ink text-white">
         <div className="site-shell"><Reveal><p className="eyebrow text-clay-300">How it moves</p><h2 className="display-heading mt-5 max-w-4xl">A deliberate sequence. A clearer build.</h2></Reveal><div className="mt-14 grid border-l border-t border-white/20 sm:grid-cols-2 lg:grid-cols-4">{service.process.map((step, index) => <Reveal key={step.title} delay={index * .06}><article className="service-process-step"><span>0{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></article></Reveal>)}</div></div>
       </section>
+
+      <section className="section bg-stone-100"><div className="site-shell grid gap-12 lg:grid-cols-[.7fr_1.3fr]"><Reveal><p className="eyebrow text-accent">Coordination register</p><h2 className="mt-5 font-display text-4xl font-semibold tracking-[-.05em] sm:text-6xl">The decisions we keep visible.</h2><p className="mt-7 max-w-md leading-7 text-stone-600">A useful service is more than a list of tasks. These are the conversations that keep the work coherent from first brief to final review.</p></Reveal><div className="service-register">{coordinationChecks.map(([title, text], index) => <Reveal key={title} delay={index * .05}><article><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{text}</p></div></article></Reveal>)}</div></div></section>
+
+      <section className="section bg-paper"><div className="site-shell"><Reveal className="grid gap-8 border-b border-ink/20 pb-10 lg:grid-cols-2 lg:items-end"><div><p className="eyebrow text-accent">Before work begins</p><h2 className="display-heading mt-5">A better first<br />conversation.</h2></div><p className="body-large max-w-xl text-stone-600 lg:justify-self-end">Bring what you know and what is still uncertain. Early clarity about the site, purpose and priorities gives the project a stronger starting point.</p></Reveal><div className="grid md:grid-cols-3">{[['Site information', 'Location, access, available drawings and known site conditions.'], ['Project intent', 'The required spaces, operational needs and the quality you are aiming for.'], ['Practical frame', 'Expected timing, decision-makers and any constraints already identified.']].map(([title, text], index) => <Reveal key={title} delay={index * .05} className="service-brief-item"><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></Reveal>)}</div></div></section>
 
       <RelatedExpertise service={service} />
 

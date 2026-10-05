@@ -17,10 +17,10 @@ export default function AdminRootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex h-screen bg-gray-50 text-gray-900">
+        <div className="admin-shell flex h-screen bg-[#e8e3d8] text-[#171713]">
             <Sidebar />
             <main className="flex-1 overflow-y-auto">
-                <div className="p-6 lg:p-8 max-w-screen-2xl mx-auto">
+                <div className="admin-content mx-auto max-w-screen-2xl p-4 sm:p-6 lg:p-10">
                     <ErrorBoundary>
                         {children}
                     </ErrorBoundary>

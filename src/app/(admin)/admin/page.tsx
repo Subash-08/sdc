@@ -18,9 +18,9 @@ export default async function AdminDashboardPage() {
             label: 'Total Projects',
             value: projectCount,
             icon: FolderKanban,
-            color: 'text-blue-600',
-            bg: 'bg-blue-50',
-            border: 'border-blue-100',
+            color: 'text-[#9a4529]',
+            bg: 'bg-[#efe2da]',
+            border: 'border-[#d8a48e]',
         },
         {
             label: 'Published',
@@ -72,11 +72,12 @@ export default async function AdminDashboardPage() {
     ];
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-10">
             {/* Page Header */}
-            <div>
-                <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Dashboard</h1>
-                <p className="text-sm text-gray-500 mt-1">Overview of your portfolio content</p>
+            <div className="border-b border-black/20 pb-7">
+                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#9a4529]">SDC content studio</p>
+                <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-.05em] text-[#171713] sm:text-6xl">Project overview.</h1>
+                <p className="mt-3 text-sm text-stone-600">Manage construction work, field notes and the public portfolio.</p>
             </div>
 
             {/* Stat Cards */}
@@ -86,16 +87,16 @@ export default async function AdminDashboardPage() {
                     return (
                         <div
                             key={stat.label}
-                            className={`bg-white rounded-xl border ${stat.border} p-5 flex items-center gap-4 shadow-sm`}
+                            className={`flex min-h-40 flex-col justify-between border ${stat.border} bg-[#f6f3ec] p-5`}
                         >
-                            <div className={`${stat.bg} ${stat.color} p-3 rounded-xl shrink-0`}>
+                            <div className={`${stat.bg} ${stat.color} grid h-10 w-10 place-items-center shrink-0`}>
                                 <Icon size={20} />
                             </div>
                             <div className="min-w-0">
                                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider truncate">
                                     {stat.label}
                                 </p>
-                                <p className={`text-3xl font-bold mt-0.5 ${stat.color}`}>
+                                <p className={`mt-2 font-display text-4xl font-semibold tracking-[-.05em] ${stat.color}`}>
                                     {stat.value}
                                 </p>
                             </div>
@@ -114,17 +115,17 @@ export default async function AdminDashboardPage() {
                         <Link
                             key={action.href}
                             href={action.href}
-                            className="group bg-white border border-gray-200 rounded-xl p-4 flex items-center justify-between hover:border-blue-300 hover:shadow-sm transition-all duration-150"
+                            className="group flex min-h-24 items-center justify-between border border-black/15 bg-[#f6f3ec] p-5 transition-all duration-200 hover:border-[#9a4529] hover:bg-white"
                         >
                             <div>
-                                <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <p className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-[#9a4529]">
                                     {action.label}
                                 </p>
                                 <p className="text-xs text-gray-500 mt-0.5">{action.description}</p>
                             </div>
                             <ArrowRight
                                 size={16}
-                                className="text-gray-300 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all shrink-0 ml-4"
+                                className="ml-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-[#9a4529]"
                             />
                         </Link>
                     ))}
