@@ -65,7 +65,10 @@ export default function PortfolioContainer({ categories }: PortfolioContainerPro
                     slug: b.project.slug || '#', // API needs to return slug
                     categoryId: b.project.category || { name: 'Construction' },
                     clientName: b.project.clientName,
-                    shortSummary: b.project.shortSummary
+                    shortSummary: b.project.shortSummary,
+                    projectYear: b.project.projectYear,
+                    projectLocation: b.project.projectLocation,
+                    displayCategoryOverride: b.project.displayCategoryOverride
                 }));
 
             setLayoutProjects(validProjects);

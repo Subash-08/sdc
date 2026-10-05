@@ -63,7 +63,6 @@ export async function getProjectBySlug(slug: string) {
             status: 'published',
         })
             .populate('categoryId', 'name')
-            .populate('techStack') // If techStack was a ref, but it's embedded in schema. Populate not needed if embedded.
             .lean();
 
         if (!project) {

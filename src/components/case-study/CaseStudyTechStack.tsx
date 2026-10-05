@@ -1,18 +1,6 @@
 import { IProject } from '@/models/Project';
 
 export default function CaseStudyTechStack({ techStack }: { techStack: IProject['techStack'] }) {
-    if (!techStack || techStack.length === 0) return null;
-
-    return (
-        <div className="flex flex-wrap gap-3">
-            {techStack.map((tech, index) => (
-                <div
-                    key={index}
-                    className="px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-100 hover:border-gray-300 cursor-default"
-                >
-                    {tech.name}
-                </div>
-            ))}
-        </div>
-    );
+  if (!techStack?.length) return null;
+  return <div className="material-register">{techStack.map((item, index) => <div key={index}><span>{String(index + 1).padStart(2, '0')}</span><strong>{item.name}</strong><em>{item.category || 'Specification'}</em></div>)}</div>;
 }

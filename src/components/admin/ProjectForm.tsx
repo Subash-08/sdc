@@ -28,8 +28,8 @@ const projectSchema = z.object({
     description: z.string().min(1, 'Description is required'),
 
     // Client
-    clientName: z.string().min(1, 'Client Name is required'),
-    clientCompany: z.string().min(1, 'Client Company is required'),
+    clientName: z.string().min(1, 'Client or project owner is required'),
+    clientCompany: z.string().min(1, 'Organisation is required'),
     clientWebsite: z.string().optional(),
     clientIndustry: z.string().optional(),
     clientLogo: imageSchema.optional(),
@@ -46,7 +46,7 @@ const projectSchema = z.object({
     subcategoryId: z.string().optional(),
     tags: z.array(z.object({ value: z.string() })).optional(),
     techStack: z.array(z.object({
-        name: z.string().min(1, 'Tech Name required'),
+        name: z.string().min(1, 'Material or building system name required'),
         category: z.string().optional()
     })).optional(),
 
@@ -333,7 +333,7 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                             hasError={hasErrors(['title', 'slug', 'description', 'categoryId'])}
                         />
                         <TabButton
-                            label="Client"
+                            label="Project"
                             icon={User}
                             isActive={activeTab === 'client'}
                             onClick={() => setActiveTab('client')}
@@ -354,7 +354,7 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                             hasError={hasErrors(['processSteps'])}
                         />
                         <TabButton
-                            label="Results"
+                            label="Outcomes"
                             icon={BarChart}
                             isActive={activeTab === 'results'}
                             onClick={() => setActiveTab('results')}
@@ -372,7 +372,7 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                                 <Section title="Project Identity">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <InputGroup label="Project Title" error={errors.title} required>
-                                            <input {...register('title')} className="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="e.g. Modern E-commerce Platform" />
+                                            <input {...register('title')} className="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 bg-gray-50 focus:bg-white transition-colors" placeholder="e.g. Courtyard Residence" />
                                         </InputGroup>
                                         <InputGroup label="URL Slug" error={errors.slug} required helpText="Auto-generated from title">
                                             <input {...register('slug')} className="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 bg-gray-50" />
@@ -400,22 +400,22 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                                             </select>
                                         </InputGroup>
                                         <InputGroup label="Display Override" error={errors.displayCategoryOverride} helpText="Optional frontend label">
-                                            <input {...register('displayCategoryOverride')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" placeholder="e.g. Corporate Website" />
+                                            <input {...register('displayCategoryOverride')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" placeholder="e.g. Residential construction" />
                                         </InputGroup>
                                     </div>
 
                                     <div className="mt-6 pt-6 border-t border-gray-100">
-                                        <label className="block text-sm font-medium text-gray-700 mb-3">Tech Stack</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-3">Materials &amp; Building Systems</label>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                             {techStackFields.map((field, index) => (
                                                 <div key={field.id} className="flex gap-2 items-center bg-gray-50 p-2 rounded-lg border border-gray-200">
-                                                    <input {...register(`techStack.${index}.name` as const)} placeholder="Name" className="flex-1 min-w-0 rounded border-gray-300 shadow-sm text-sm p-1.5" />
-                                                    <input {...register(`techStack.${index}.category` as const)} placeholder="Type" className="w-24 rounded border-gray-300 shadow-sm text-sm p-1.5" />
+                                                    <input {...register(`techStack.${index}.name` as const)} placeholder="Reinforced concrete" className="flex-1 min-w-0 rounded border-gray-300 shadow-sm text-sm p-1.5" />
+                                                    <input {...register(`techStack.${index}.category` as const)} placeholder="Structure" className="w-24 rounded border-gray-300 shadow-sm text-sm p-1.5" />
                                                     <button type="button" onClick={() => removeTechStack(index)} className="text-gray-400 hover:text-rose-500 p-1"><X size={16} /></button>
                                                 </div>
                                             ))}
                                         </div>
-                                        <button type="button" onClick={() => appendTechStack({ name: '', category: '' })} className="mt-3 text-sm text-blue-600 hover:text-blue-700 flex items-center font-medium px-2 py-1 rounded hover:bg-blue-50 transition-colors w-max"><Plus size={16} className="mr-1" /> Add Technology</button>
+                                        <button type="button" onClick={() => appendTechStack({ name: '', category: '' })} className="mt-3 text-sm text-blue-600 hover:text-blue-700 flex items-center font-medium px-2 py-1 rounded hover:bg-blue-50 transition-colors w-max"><Plus size={16} className="mr-1" /> Add Material / System</button>
                                     </div>
                                 </Section>
                             </>
@@ -423,23 +423,23 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
 
                         {activeTab === 'client' && (
                             <div className="space-y-8">
-                                <Section title="Client Information">
+                                <Section title="Project Stakeholder">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <InputGroup label="Client Name" error={errors.clientName} required>
+                                        <InputGroup label="Client / Project For" error={errors.clientName} required>
                                             <input {...register('clientName')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" />
                                         </InputGroup>
-                                        <InputGroup label="Company" error={errors.clientCompany} required>
+                                        <InputGroup label="Organisation" error={errors.clientCompany} required>
                                             <input {...register('clientCompany')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" />
                                         </InputGroup>
-                                        <InputGroup label="Website" error={errors.clientWebsite}>
+                                        <InputGroup label="Stakeholder Website" error={errors.clientWebsite}>
                                             <input {...register('clientWebsite')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" placeholder="https://" />
                                         </InputGroup>
-                                        <InputGroup label="Industry" error={errors.clientIndustry}>
+                                        <InputGroup label="Building Type" error={errors.clientIndustry}>
                                             <input {...register('clientIndustry')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" />
                                         </InputGroup>
                                     </div>
                                     <div className="mt-6">
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Client Logo</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Stakeholder Logo</label>
                                         <div className="max-w-xs">
                                             <Controller control={control} name="clientLogo" render={({ field }) => (
                                                 <>
@@ -462,7 +462,7 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                                         <InputGroup label="Duration" error={errors.projectDuration}>
                                             <input {...register('projectDuration')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" />
                                         </InputGroup>
-                                        <InputGroup label="Live URL" error={errors.projectUrl}>
+                                        <InputGroup label="External Project Reference" error={errors.projectUrl}>
                                             <input {...register('projectUrl')} className="w-full rounded-lg border-gray-300 shadow-sm sm:text-sm p-3 bg-gray-50" />
                                         </InputGroup>
                                     </div>
@@ -568,14 +568,14 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                                             <InputGroup label="Objectives" error={errors.objectives}>
                                                 <textarea {...register('objectives')} rows={5} className="w-full rounded-lg border-gray-300 shadow-sm text-sm p-4 bg-gray-50" />
                                             </InputGroup>
-                                            <InputGroup label="Target Audience" error={errors.targetAudience}>
+                                            <InputGroup label="Building Use / Occupancy" error={errors.targetAudience}>
                                                 <textarea {...register('targetAudience')} rows={5} className="w-full rounded-lg border-gray-300 shadow-sm text-sm p-4 bg-gray-50" />
                                             </InputGroup>
                                         </div>
                                     </div>
                                 </Section>
 
-                                <Section title="Process & Workflow">
+                                <Section title="Construction Sequence">
                                     <div className="space-y-6">
                                         {processFields.map((field, index) => (
                                             <div key={field.id} className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm relative group">
@@ -613,7 +613,7 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
 
                         {activeTab === 'results' && (
                             <div className="space-y-8">
-                                <Section title="Key Outcomes">
+                                <Section title="Verified Project Outcomes">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {metricFields.map((field, index) => (
                                             <div key={field.id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm relative group hover:shadow-md transition-shadow">
@@ -622,14 +622,14 @@ export default function ProjectForm({ project, categories }: ProjectFormProps) {
                                                     <InputGroup label="Value">
                                                         <input {...register(`metrics.${index}.value` as const)} className="w-full rounded border-gray-200 shadow-sm text-2xl font-bold p-2 text-center text-blue-600 bg-transparent focus:ring-0 focus:border-blue-500" placeholder="0%" />
                                                     </InputGroup>
-                                                    <InputGroup label="Metric Label">
+                                                    <InputGroup label="Outcome Label">
                                                         <input {...register(`metrics.${index}.label` as const)} className="w-full rounded border-gray-200 shadow-sm text-xs font-medium text-gray-500 text-center p-1.5 uppercase tracking-wide" placeholder="CONVERSION RATE" />
                                                     </InputGroup>
                                                 </div>
                                             </div>
                                         ))}
                                         <button type="button" onClick={() => appendMetric({ label: '', value: '' })} className="border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center p-4 text-gray-400 hover:border-blue-500 hover:text-blue-600 transition-colors h-full min-h-[140px]">
-                                            <Plus size={28} className="mb-2" /> <span className="text-sm font-semibold">Add Metric</span>
+                                                    <Plus size={28} className="mb-2" /> <span className="text-sm font-semibold">Add Outcome</span>
                                         </button>
                                     </div>
                                 </Section>

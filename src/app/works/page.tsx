@@ -30,6 +30,15 @@ export default async function WorksPage() {
         </div>
         <div className="site-shell mt-14 lg:mt-20"><ImageReveal className="relative aspect-[16/6] min-h-[280px]"><Image src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=85" alt="Contemporary construction project" fill priority sizes="100vw" className="object-cover" /></ImageReveal></div>
       </section>
+      <section className="border-b border-ink/20 bg-clay-200">
+        <div className="site-shell grid divide-y divide-ink/20 md:grid-cols-3 md:divide-x md:divide-y-0">
+          {[
+            ['01', 'Places to live', 'Homes, villas and residential environments shaped around climate, privacy and daily life.'],
+            ['02', 'Places to work', 'Commercial and industrial structures planned for clear movement, durable use and future change.'],
+            ['03', 'Specialist works', 'Renovation, roofing and infrastructure assignments resolved through practical site intelligence.'],
+          ].map(([number, title, copy]) => <Reveal key={number} className="project-archive-key"><span>{number}</span><h2>{title}</h2><p>{copy}</p></Reveal>)}
+        </div>
+      </section>
       <section className="section"><div className="site-shell"><div className="mb-12 flex items-end justify-between border-b border-ink/20 pb-5"><p className="eyebrow text-accent">Project index</p><p className="hidden text-sm text-stone-500 sm:block">Browse by discipline</p></div><PortfolioContainer categories={categories} /></div></section>
     </main>
   );
