@@ -32,8 +32,7 @@ const NewsletterSchema = new Schema<INewsletter>(
   { timestamps: true }
 );
 
-// Index for fast lookup
-NewsletterSchema.index({ email: 1 });
+// `unique: true` already creates the email index.
 NewsletterSchema.index({ status: 1 });
 NewsletterSchema.index({ subscribedAt: -1 });
 

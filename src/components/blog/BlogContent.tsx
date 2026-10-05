@@ -23,9 +23,9 @@ export default function BlogContent({ html }: Props) {
 
 const blogContentCss = `
   .blog-content {
-    color: #1a202c;
-    font-size: 1.0625rem;
-    line-height: 1.8;
+    color: #44403c;
+    font-size: 1.075rem;
+    line-height: 1.85;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     max-width: 100%;
     word-wrap: break-word;
@@ -38,36 +38,38 @@ const blogContentCss = `
   .blog-content h4,
   .blog-content h5,
   .blog-content h6 {
-    font-weight: 700;
-    line-height: 1.3;
-    color: #111827;
-    margin-top: 2em;
+    font-family: var(--font-manrope), sans-serif;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -.04em;
+    color: #111210;
+    margin-top: 2.4em;
     margin-bottom: 0.6em;
     scroll-margin-top: 6rem;
   }
 
-  .blog-content h1 { font-size: 2rem; }
-  .blog-content h2 { font-size: 1.5rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.4em; }
-  .blog-content h3 { font-size: 1.25rem; }
+  .blog-content h1 { font-size: 2.4rem; }
+  .blog-content h2 { font-size: clamp(1.9rem, 4vw, 3.1rem); border-top: 1px solid rgba(17,18,16,.2); padding-top: .75em; }
+  .blog-content h3 { font-size: 1.45rem; }
   .blog-content h4 { font-size: 1.1rem; }
 
   /* ── Paragraphs ───────────────────────────── */
   .blog-content p {
     margin-top: 0;
     margin-bottom: 1.4em;
-    color: #374151;
+    color: #57534e;
   }
 
   /* ── Links ────────────────────────────────── */
   .blog-content a {
-    color: #2563eb;
+    color: #9a4529;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .blog-content a:hover {
-    color: #1d4ed8;
-    border-bottom-color: #1d4ed8;
+    color: #80371f;
+    border-bottom-color: #80371f;
   }
 
   /* ── Lists ────────────────────────────────── */
@@ -75,7 +77,7 @@ const blogContentCss = `
   .blog-content ol {
     padding-left: 1.6em;
     margin-bottom: 1.4em;
-    color: #374151;
+    color: #57534e;
   }
   .blog-content ul { list-style-type: disc; }
   .blog-content ol { list-style-type: decimal; }
@@ -84,18 +86,17 @@ const blogContentCss = `
     line-height: 1.7;
   }
   .blog-content li::marker {
-    color: #6b7280;
+    color: #9a4529;
   }
 
   /* ── Blockquote ───────────────────────────── */
   .blog-content blockquote {
-    border-left: 4px solid #3b82f6;
-    background: #eff6ff;
+    border-left: 3px solid #9a4529;
+    background: #e7e2d7;
     margin: 2em 0;
     padding: 1em 1.5em;
-    border-radius: 0 0.5rem 0.5rem 0;
     font-style: italic;
-    color: #1e40af;
+    color: #44322b;
     font-size: 1.05em;
     line-height: 1.7;
   }
@@ -120,7 +121,7 @@ const blogContentCss = `
   .blog-content pre {
     background: #0f172a;
     color: #e2e8f0;
-    border-radius: 0.75rem;
+    border-radius: 0;
     padding: 1.25rem 1.5rem;
     overflow-x: auto;
     margin: 1.75em 0;
@@ -144,10 +145,8 @@ const blogContentCss = `
   .blog-content img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.75rem;
     display: block;
     margin: 1.5em auto;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   }
   .blog-content figure {
     margin: 2em 0;
@@ -196,7 +195,7 @@ const blogContentCss = `
   }
 
   /* ── Strong & Em ──────────────────────────── */
-  .blog-content strong { font-weight: 700; color: #111827; }
+  .blog-content strong { font-weight: 700; color: #111210; }
   .blog-content em { font-style: italic; }
 
   /* ── FAQ Accordion ────────────────────────── */
@@ -314,8 +313,8 @@ const blogContentCss = `
 
   /* ── First paragraph lead ─────────────────── */
   .blog-content > p:first-child {
-    font-size: 1.1em;
-    color: #4b5563;
+    font-size: 1.08em;
+    color: #57534e;
   }
 
   /* ── Spacing: don't double-margin first child ─ */

@@ -31,17 +31,17 @@ export default function TableOfContents({ items }: Props) {
   }, [items]);
 
   return (
-    <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 sticky top-6">
-      <p className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wider">Table of Contents</p>
-      <ol className="space-y-1.5 list-none">
+    <div className="sticky top-28 border-t border-ink/20 pt-5">
+      <p className="eyebrow mb-5 text-accent">Article index</p>
+      <ol className="list-none space-y-2">
         {items.map((item) => (
           <li key={item.anchorId} className={item.level === 3 ? 'ml-4' : ''}>
             <a
               href={`#${item.anchorId}`}
-              className={`block text-sm py-0.5 border-l-2 pl-3 transition-all ${
+              className={`block border-l pl-3 text-sm leading-6 transition-all ${
                 activeId === item.anchorId
-                  ? 'text-blue-600 font-medium border-blue-600'
-                  : 'text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-300'
+                  ? 'border-accent font-medium text-accent'
+                  : 'border-ink/15 text-stone-500 hover:border-ink hover:text-ink'
               }`}
             >
               {item.text}

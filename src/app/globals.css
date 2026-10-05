@@ -127,6 +127,14 @@
   .case-decisions > div > div { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; border-bottom: 1px solid rgb(17 18 16 / .2); padding: 1.5rem 0; }
   .case-decisions span { font-size: .62rem; font-weight: 700; letter-spacing: .14em; color: #9a4529; }
   .case-decisions p { max-width: 48rem; font-family: var(--font-manrope); font-size: clamp(1.25rem, 2vw, 2rem); line-height: 1.35; letter-spacing: -.03em; }
+  .about-principle { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; border-bottom: 1px solid rgb(17 18 16 / .2); padding: 1.4rem 0; }
+  .about-principle > span, .about-field > span { font-size: .62rem; font-weight: 700; letter-spacing: .14em; color: #9a4529; }
+  .about-principle h3, .about-field h3 { font-family: var(--font-manrope); font-size: 1.45rem; font-weight: 600; letter-spacing: -.04em; }
+  .about-principle p, .about-field p { max-width: 34rem; margin-top: .55rem; line-height: 1.65; color: #78716c; }
+  .about-field { min-height: 18rem; border-right: 1px solid rgb(255 255 255 / .2); border-bottom: 1px solid rgb(255 255 255 / .2); padding: 1.75rem; }
+  .about-field > span { color: #d8a48e; }
+  .about-field h3 { margin-top: 4rem; color: white; font-size: clamp(1.8rem, 3vw, 3rem); }
+  .about-field p { color: #a8a29e; }
   .journal-filter { flex: 0 0 auto; border-right: 1px solid rgb(17 18 16 / .15); padding: 1.1rem 1.4rem; color: #78716c; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: color .2s ease, background .2s ease; }
   .journal-filter:first-child { border-left: 1px solid rgb(17 18 16 / .15); }
   .journal-filter sup { margin-left: .35rem; color: #9a4529; }

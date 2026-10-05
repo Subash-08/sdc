@@ -41,10 +41,10 @@ const Sidebar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-5">
+      <nav className="no-scrollbar flex-1 space-y-1 overflow-y-auto px-3 py-4">
         {topLinks.map((link) => {
           const Icon = link.icon;
-          const active = pathname === link.href || pathname?.startsWith(`${link.href}/`);
+          const active = link.href === '/admin' ? pathname === '/admin' : pathname === link.href || pathname?.startsWith(`${link.href}/`);
           return (
             <Link
               key={link.href}
@@ -100,7 +100,7 @@ const Sidebar = () => {
       </nav>
 
       {/* Logout */}
-      <div className="space-y-1 border-t border-white/10 px-3 py-4">
+      <div className="space-y-1 border-t border-white/10 px-3 pb-14 pt-4 md:pb-8">
         <Link href="/" className="flex min-h-11 w-full items-center gap-3 border border-transparent px-3 text-sm font-medium text-stone-400 transition hover:border-white/15 hover:text-white"><ExternalLink size={17} /><span className="hidden md:block">View website</span></Link>
         <button
           onClick={() => signOut({ callbackUrl: '/' })}

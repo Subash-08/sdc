@@ -1,22 +1,24 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { fetchProjects } from '@/actions/project.actions';
-import { Plus } from 'lucide-react';
+import { Plus, ArrowUpRight } from 'lucide-react';
 
 export default async function AdminProjectsPage() {
     const projects = await fetchProjects();
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             {/* Page Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col justify-between gap-5 border-b border-black/20 pb-7 sm:flex-row sm:items-end">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Projects</h1>
-                    <p className="text-sm text-gray-500 mt-0.5">{projects.length} project{projects.length !== 1 ? 's' : ''} total</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#9a4529]">Portfolio register</p>
+                    <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-.05em] text-[#171713] sm:text-6xl">Projects.</h1>
+                    <p className="mt-2 text-sm text-stone-600">{projects.length} project{projects.length !== 1 ? 's' : ''} in the construction archive</p>
                 </div>
                 <Link
                     href="/admin/projects/create"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold py-2.5 px-4 rounded-lg transition-colors shadow-sm shrink-0"
+                    className="inline-flex min-h-12 shrink-0 items-center gap-2 bg-[#111210] px-5 text-xs font-bold uppercase tracking-[.1em] text-white transition-colors hover:bg-[#9a4529]"
                 >
                     <Plus size={16} />
                     Create Project
@@ -24,7 +26,7 @@ export default async function AdminProjectsPage() {
             </div>
 
             {/* Projects List */}
-            <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+            <div className="overflow-hidden border border-black/15 bg-[#f6f3ec]">
                 {projects.length === 0 ? (
                     <div className="text-center py-16 px-6">
                         <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -40,25 +42,27 @@ export default async function AdminProjectsPage() {
                         </Link>
                     </div>
                 ) : (
-                    <ul role="list" className="divide-y divide-gray-100">
+                    <ul role="list" className="divide-y divide-black/10">
                         {projects.map((project: any) => (
-                            <li key={project._id} className="group hover:bg-gray-50 transition-colors">
-                                <Link href={`/admin/projects/edit/${project._id}`} className="block px-5 py-4">
+                            <li key={project._id} className="group transition-colors hover:bg-white">
+                                <Link href={`/admin/projects/edit/${project._id}`} className="block px-4 py-4 sm:px-6">
                                     <div className="flex items-center justify-between gap-4">
                                         <div className="flex items-center gap-3 min-w-0">
                                             {project.thumbnail?.url ? (
-                                                <img
+                                                <Image
                                                     src={project.thumbnail.url}
                                                     alt={project.title}
-                                                    className="h-10 w-10 rounded-lg object-cover shrink-0 border border-gray-100"
+                                                    width={52}
+                                                    height={52}
+                                                    className="h-[52px] w-[52px] shrink-0 object-cover"
                                                 />
                                             ) : (
-                                                <div className="h-10 w-10 rounded-lg bg-gray-100 shrink-0 flex items-center justify-center text-gray-400 text-xs font-bold">
+                                                <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center bg-stone-200 text-xs font-bold text-stone-500">
                                                     {project.title?.charAt(0)?.toUpperCase()}
                                                 </div>
                                             )}
                                             <div className="min-w-0">
-                                                <p className="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+                                                <p className="truncate font-display text-base font-semibold tracking-[-.025em] text-gray-900 transition-colors group-hover:text-[#9a4529]">
                                                     {project.title}
                                                 </p>
                                                 <p className="text-xs text-gray-500 truncate mt-0.5">
@@ -66,17 +70,17 @@ export default async function AdminProjectsPage() {
                                                 </p>
                                             </div>
                                         </div>
-                                        <span
-                                            className={`shrink-0 inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${
+                                        <div className="flex shrink-0 items-center gap-4"><span
+                                            className={`inline-flex items-center border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.08em] ${
                                                 project.status === 'published'
-                                                    ? 'bg-emerald-100 text-emerald-700'
+                                                    ? 'border-emerald-700/20 bg-emerald-50 text-emerald-700'
                                                     : project.status === 'archived'
-                                                    ? 'bg-gray-100 text-gray-600'
-                                                    : 'bg-amber-100 text-amber-700'
+                                                    ? 'border-stone-300 bg-stone-100 text-stone-600'
+                                                    : 'border-amber-700/20 bg-amber-50 text-amber-700'
                                             }`}
                                         >
                                             {project.status}
-                                        </span>
+                                        </span><ArrowUpRight size={17} className="hidden text-stone-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:block" /></div>
                                     </div>
                                 </Link>
                             </li>

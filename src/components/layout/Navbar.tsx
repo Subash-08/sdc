@@ -11,7 +11,7 @@ import { services } from '@/config/services';
 
 const links = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/#about' },
+  { name: 'About', href: '/about' },
   { name: 'Projects', href: '/works' },
   { name: 'Blog', href: '/blog' },
 ];
@@ -37,7 +37,7 @@ export default function Navbar() {
   }, [open]);
 
   if (pathname?.startsWith('/admin')) return null;
-  const hasDarkHero = pathname === '/' || pathname === '/works' || pathname === '/blog' || pathname?.startsWith('/services');
+  const hasDarkHero = pathname === '/' || pathname === '/about' || pathname?.startsWith('/works') || pathname?.startsWith('/blog') || pathname?.startsWith('/services');
   const lightHeader = open || servicesOpen || (hasDarkHero && !scrolled);
 
   return (

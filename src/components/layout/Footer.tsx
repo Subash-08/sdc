@@ -1,9 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 import { services } from '@/config/services';
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/admin')) return null;
+
   return (
     <footer className="bg-ink text-stone-300">
       <div className="site-shell py-16 sm:py-20">
@@ -17,7 +23,7 @@ export default function Footer() {
           </div>
           <div>
             <h2 className="footer-heading">Explore</h2>
-            <div className="grid gap-3"><Link href="/#about">About</Link><Link href="/services">Services</Link><Link href="/works">Projects</Link><Link href="/blog">Blog</Link></div>
+            <div className="grid gap-3"><Link href="/about">About</Link><Link href="/services">Services</Link><Link href="/works">Projects</Link><Link href="/blog">Blog</Link></div>
           </div>
           <div>
             <h2 className="footer-heading">Services</h2>
