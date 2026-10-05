@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import Reveal from './Reveal';
 import { siteConfig } from '@/config/site';
+import ParallaxMedia from './ParallaxMedia';
 
 const services = [
   { number: '01', name: 'Building Construction', text: 'End-to-end delivery for residential and large-scale construction projects.', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80' },
@@ -60,6 +61,31 @@ export function BrandStatement() {
 
 export function QualityCommitment() {
   return <section className="section bg-paper"><div className="site-shell grid gap-12 lg:grid-cols-2 lg:items-center"><Reveal><p className="eyebrow text-accent">Our commitment</p><h2 className="display-heading mt-5">Good construction is measured in what lasts.</h2></Reveal><Reveal delay={.08}><p className="body-large mb-8">We focus on the fundamentals that give every project confidence—from thoughtful planning to quality materials and responsible execution.</p><div className="grid gap-4 sm:grid-cols-2">{['Purpose-led planning', 'Quality craftsmanship', 'Practical solutions', 'Attentive handover'].map((item) => <div key={item} className="flex items-center gap-3 border-t border-ink/20 pt-4"><Check size={17} className="text-accent" />{item}</div>)}</div></Reveal></div></section>;
+}
+
+export function ProjectAnatomy() {
+  const layers = [
+    ['01', 'Ground', 'Read the site, levels, access and water before the first structural decision.'],
+    ['02', 'Structure', 'Coordinate the load-bearing framework around use, span and long-term performance.'],
+    ['03', 'Envelope', 'Resolve roof, walls, openings and weather protection as one connected system.'],
+    ['04', 'Finish', 'Bring material, craft and everyday touchpoints together with a disciplined close-out.'],
+  ];
+  return <section className="anatomy-section bg-ink text-white"><div className="site-shell grid lg:grid-cols-[1.05fr_.95fr]">
+    <ParallaxMedia className="anatomy-media min-h-[540px] lg:min-h-[860px]"><Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85" alt="Construction structure and material detail" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></ParallaxMedia>
+    <div className="flex flex-col justify-center py-20 lg:py-28 lg:pl-16"><Reveal><p className="eyebrow text-clay-300">Anatomy of a build</p><h2 className="display-heading mt-5">Every layer has a job to do.</h2><p className="mt-7 max-w-lg leading-7 text-stone-400">Good buildings are not assembled as isolated parts. We think from ground condition to final finish as one continuous piece of work.</p></Reveal><div className="mt-12 border-t border-white/20">{layers.map(([number, title, text], index) => <Reveal key={title} delay={index * .04}><article className="anatomy-row"><span>{number}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div>
+  </div></section>;
+}
+
+export function SiteDialogue() {
+  return <section className="section overflow-hidden bg-paper"><div className="site-shell">
+    <Reveal className="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end"><div><p className="eyebrow text-accent">Site intelligence</p><p className="mt-6 max-w-sm leading-7 text-stone-600">The most useful decisions often begin with observation: how people arrive, where water moves, how light travels and what the operation needs.</p></div><h2 className="display-heading">The site speaks.<br />We start by listening.</h2></Reveal>
+    <div className="mt-14 grid gap-5 md:grid-cols-[1.35fr_.65fr] md:items-end"><ParallaxMedia className="relative min-h-[420px] md:min-h-[680px]"><Image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1700&q=85" alt="Construction team reviewing a live site" fill sizes="(max-width: 768px) 100vw, 70vw" className="object-cover" /></ParallaxMedia><div className="grid gap-5"><Reveal><div className="site-note"><span>Observe</span><p>Access, orientation, context and constraints are mapped before the build sequence is fixed.</p></div></Reveal><ParallaxMedia className="relative min-h-[300px] md:min-h-[390px]"><Image src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1000&q=85" alt="Architectural roof geometry" fill sizes="(max-width: 768px) 100vw, 30vw" className="object-cover" /></ParallaxMedia></div></div>
+  </div></section>;
+}
+
+export function PrecisionBand() {
+  const phrases = ['Plan with clarity', 'Build with discipline', 'Finish with care'];
+  return <section className="precision-band" aria-label="Construction principles"><div className="precision-track">{[...phrases, ...phrases].map((phrase, index) => <span key={`${phrase}-${index}`} aria-hidden={index >= phrases.length || undefined}>{phrase}<i /></span>)}</div></section>;
 }
 
 export function FinalCTA() {

@@ -1,12 +1,5 @@
-import { HeroSkeleton, ContentSkeleton } from '@/components/skeletons';
+import SiteLoader from '@/components/layout/SiteLoader';
 
 export default function Loading() {
-  return (
-    <div className="w-full">
-      <HeroSkeleton />
-      <div className="py-20">
-        <ContentSkeleton />
-      </div>
-    </div>
-  );
+  return <SiteLoader />;
 }

@@ -6,6 +6,7 @@ import { generateSEO } from '@/lib/seo';
 import Reveal from '@/components/home/Reveal';
 import ImageReveal from '@/components/home/ImageReveal';
 import { siteConfig } from '@/config/site';
+import { ServicePathways, ServiceSystem } from '@/components/services/ServiceNarrative';
 
 export const metadata = generateSEO({
   title: 'Construction Services',
@@ -23,6 +24,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <ServicePathways />
+
       <section className="section">
         <div className="site-shell">
           {services.map((service, index) => (
@@ -38,6 +41,8 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
+
+      <ServiceSystem />
 
       <section className="bg-stone-100 py-20 sm:py-28">
         <div className="site-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">

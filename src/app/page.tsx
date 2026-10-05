@@ -5,7 +5,7 @@ import { OrganizationStructuredData } from '@/components/seo/StructuredData';
 import Hero from '@/components/home/Hero';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
 import LatestBlogs from '@/components/home/LatestBlogs';
-import { AboutIntro, BrandStatement, FinalCTA, Process, QualityCommitment, Services, WhyChooseUs } from '@/components/home/Sections';
+import { AboutIntro, BrandStatement, FinalCTA, PrecisionBand, Process, ProjectAnatomy, QualityCommitment, Services, SiteDialogue, WhyChooseUs } from '@/components/home/Sections';
 
 export const revalidate = 3600;
 export const metadata = generateSEO({ title: 'Construction Company in Hosur', description: 'Residential, commercial, industrial, interior and renovation services from Shree Dhurga Constructions in Hosur, Tamil Nadu.', keywords: ['construction company Hosur', 'commercial construction Hosur', 'industrial construction Tamil Nadu', 'renovation Hosur'] });
@@ -22,5 +22,5 @@ async function loadHomepageData() {
 
 export default async function HomePage() {
   const { projects, blogs } = await loadHomepageData();
-  return <main><OrganizationStructuredData /><Hero /><AboutIntro /><Services /><FeaturedProjects projects={projects} /><WhyChooseUs /><Process /><BrandStatement /><QualityCommitment /><LatestBlogs blogs={blogs} /><FinalCTA /></main>;
+  return <main><OrganizationStructuredData /><Hero /><PrecisionBand /><AboutIntro /><Services /><ProjectAnatomy /><FeaturedProjects projects={projects} /><WhyChooseUs /><SiteDialogue /><Process /><BrandStatement /><QualityCommitment /><LatestBlogs blogs={blogs} /><FinalCTA /></main>;
 }

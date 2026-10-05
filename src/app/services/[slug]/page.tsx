@@ -7,6 +7,7 @@ import { generateSEO } from '@/lib/seo';
 import { siteConfig } from '@/config/site';
 import Reveal from '@/components/home/Reveal';
 import ImageReveal from '@/components/home/ImageReveal';
+import { RelatedExpertise, ServiceDetailOutcome } from '@/components/services/ServiceNarrative';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -36,6 +37,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      <ServiceDetailOutcome service={service} />
+
       <section className="section">
         <div className="site-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr]">
           <Reveal><p className="eyebrow text-accent">The approach</p><h2 className="mt-5 font-display text-4xl font-semibold tracking-[-.05em] sm:text-5xl">Built around the work it needs to do.</h2></Reveal>
@@ -50,6 +53,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="section bg-ink text-white">
         <div className="site-shell"><Reveal><p className="eyebrow text-clay-300">How it moves</p><h2 className="display-heading mt-5 max-w-4xl">A deliberate sequence. A clearer build.</h2></Reveal><div className="mt-14 grid border-l border-t border-white/20 sm:grid-cols-2 lg:grid-cols-4">{service.process.map((step, index) => <Reveal key={step.title} delay={index * .06}><article className="service-process-step"><span>0{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></article></Reveal>)}</div></div>
       </section>
+
+      <RelatedExpertise service={service} />
 
       <section className="bg-accent text-white">
         <div className="site-shell grid gap-10 py-16 sm:py-24 lg:grid-cols-[1fr_auto] lg:items-end">
