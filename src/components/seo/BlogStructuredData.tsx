@@ -19,7 +19,7 @@ export default function BlogStructuredData({ blog }: Props) {
     publisher: {
       '@type': 'Organization',
       name: 'Shree Dhurga Constructions',
-      logo: { '@type': 'ImageObject', url: `${baseUrl}/logo.png` },
+      logo: { '@type': 'ImageObject', url: `${baseUrl}/brand/sdc-logo-transparent-v2.png` },
     },
     description: blog.seo?.metaDescription,
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${baseUrl}/blog/${blog.slug}` },

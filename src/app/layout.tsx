@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: { default: siteConfig.seo.defaultTitle, template: siteConfig.seo.titleTemplate },
   description: siteConfig.seo.defaultDescription,
   applicationName: siteConfig.name,
-  icons: { icon: '/brand/sdc-logo.png', apple: '/brand/sdc-logo.png' },
+  icons: { icon: '/brand/sdc-logo-transparent-v2.png', apple: '/brand/sdc-logo-transparent-v2.png' },
   openGraph: { type: 'website', locale: 'en_IN', siteName: siteConfig.name, title: siteConfig.seo.defaultTitle, description: siteConfig.seo.defaultDescription },
 };
 

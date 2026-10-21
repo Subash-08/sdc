@@ -44,7 +44,7 @@ export default function Navbar() {
     <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''} ${lightHeader ? 'site-header--light' : ''}`} onMouseLeave={() => setServicesOpen(false)}>
       <div className="site-shell flex h-[76px] items-center justify-between lg:h-[88px]">
         <Link href="/" className="brand-mark" aria-label={`${siteConfig.name} home`}>
-          <Image src="/brand/sdc-logo.png" alt="Shree Dhurga Constructions" width={512} height={512} priority className="brand-logo" />
+          <Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} priority className="brand-logo" />
         </Link>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
           {links.slice(0, 2).map((link) => <Link key={link.name} href={link.href} className="nav-link">{link.name}</Link>)}

@@ -37,7 +37,7 @@ const Sidebar = () => {
     <aside className="flex h-full w-20 shrink-0 flex-col border-r border-white/10 bg-[#171b42] text-white md:w-72">
       {/* Brand */}
       <div className="flex min-h-24 items-center gap-3 border-b border-white/10 px-3 md:px-5">
-        <Image src="/brand/sdc-logo.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-14 w-20 shrink-0 object-contain md:h-16 md:w-32" />
+        <Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-14 w-20 shrink-0 object-contain md:h-16 md:w-32" />
         <div className="hidden md:block"><p className="text-[9px] font-bold uppercase tracking-[.18em] text-[#ff8a61]">Content studio</p></div>
       </div>
 

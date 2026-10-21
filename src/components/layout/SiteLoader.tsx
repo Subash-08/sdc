@@ -5,7 +5,7 @@ export default function SiteLoader({ label = 'Preparing the site' }: { label?: s
     <main className="site-loader" role="status" aria-live="polite">
       <div className="site-loader-grid" aria-hidden="true" />
       <div className="site-loader-frame">
-        <div className="site-loader-mark"><Image src="/brand/sdc-logo.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-20 w-32 object-contain" /><i /></div>
+        <div className="site-loader-mark"><Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-20 w-32 object-contain" /><i /></div>
         <div>
           <p className="eyebrow text-clay-300">{label}</p>
           <p className="site-loader-title">Drawing the next<br />line into place.</p>

@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="site-shell py-16 sm:py-20">
         <div className="grid gap-12 border-b border-white/15 pb-14 lg:grid-cols-[1.25fr_.75fr_.75fr]">
           <div>
-            <div className="mb-7 w-fit"><Image src="/brand/sdc-logo.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-auto w-52" /></div>
+            <div className="mb-7 w-fit"><Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-auto w-52" /></div>
             <p className="max-w-md text-base leading-7 text-stone-400">Thoughtful planning, disciplined execution and enduring construction across residential, commercial and industrial projects.</p>
           </div>
           <div>
