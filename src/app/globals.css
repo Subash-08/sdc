@@ -53,8 +53,11 @@
   .site-header { position: fixed; inset: 0 0 auto; z-index: 50; color: #171b42; transition: background-color .3s ease, color .3s ease, box-shadow .3s ease; }
   .site-header--light { color: white; }
   .site-header--scrolled { background: rgb(247 248 252 / .95); box-shadow: 0 1px 0 rgb(23 27 66 / .12); backdrop-filter: blur(14px); }
-  .brand-mark { position: relative; z-index: 60; display: flex; align-items: center; }
-  .brand-logo { display: block; width: clamp(9.5rem, 13vw, 12.5rem); height: auto; filter: drop-shadow(0 1px 0 rgb(255 255 255 / .08)); }
+  .brand-mark { position: relative; z-index: 60; display: flex; align-items: center; isolation: isolate; }
+  .brand-mark::before { content: ''; position: absolute; z-index: -1; inset: 22% -8%; border-radius: 999px; opacity: 0; background: rgb(255 255 255 / .9); filter: blur(14px); transition: opacity .3s ease; }
+  .brand-logo { display: block; width: clamp(6.25rem, 7vw, 7.5rem); height: auto; filter: drop-shadow(0 1px 0 rgb(255 255 255 / .12)); transition: filter .3s ease; }
+  .site-header--light .brand-mark::before { opacity: .88; }
+  .site-header--light .brand-logo { filter: drop-shadow(0 2px 6px rgb(255 255 255 / .52)); }
   .brand-monogram { display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border: 1px solid currentColor; font-family: var(--font-manrope); font-size: .68rem; font-weight: 700; letter-spacing: .12em; }
   .brand-name { font-family: var(--font-manrope); font-size: .83rem; font-weight: 700; line-height: 1.05; text-transform: uppercase; letter-spacing: .03em; }
   .nav-link { position: relative; font-size: .73rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
