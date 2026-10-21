@@ -42,6 +42,13 @@ export default withAuth(
         // runtime, where relying on implicit option discovery can result in a
         // valid session being treated as unauthenticated.
         secret: process.env.NEXTAUTH_SECRET,
+        cookies: {
+            sessionToken: {
+                name: process.env.NODE_ENV === "production"
+                    ? "__Secure-next-auth.session-token"
+                    : "next-auth.session-token",
+            },
+        },
         callbacks: {
             authorized: ({ req, token }) => {
                 // Allow access to login page without token
