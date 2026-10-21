@@ -21,7 +21,7 @@ export const siteConfig = {
   organization: {
     name: 'Shree Dhurga Constructions',
     legalName: 'Shree Dhurga Constructions',
-    logo: '/logo.png',
+    logo: '/brand/sdc-logo.png',
     description: 'Construction and renovation company serving residential, commercial and industrial projects in Hosur.',
     type: 'LocalBusiness' as const,
     address: { streetAddress: 'No. 2/192, 5th Cross, Nethaji Nagar', addressLocality: 'Hosur', addressRegion: 'Tamil Nadu', postalCode: '635126', addressCountry: 'IN' },

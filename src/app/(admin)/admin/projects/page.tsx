@@ -12,13 +12,13 @@ export default async function AdminProjectsPage() {
             {/* Page Header */}
             <div className="flex flex-col justify-between gap-5 border-b border-black/20 pb-7 sm:flex-row sm:items-end">
                 <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#9a4529]">Portfolio register</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#ff6433]">Portfolio register</p>
                     <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-.05em] text-[#171713] sm:text-6xl">Projects.</h1>
                     <p className="mt-2 text-sm text-stone-600">{projects.length} project{projects.length !== 1 ? 's' : ''} in the construction archive</p>
                 </div>
                 <Link
                     href="/admin/projects/create"
-                    className="inline-flex min-h-12 shrink-0 items-center gap-2 bg-[#111210] px-5 text-xs font-bold uppercase tracking-[.1em] text-white transition-colors hover:bg-[#9a4529]"
+                    className="inline-flex min-h-12 shrink-0 items-center gap-2 bg-[#171b42] px-5 text-xs font-bold uppercase tracking-[.1em] text-white transition-colors hover:bg-[#ff6433]"
                 >
                     <Plus size={16} />
                     Create Project
@@ -26,7 +26,7 @@ export default async function AdminProjectsPage() {
             </div>
 
             {/* Projects List */}
-            <div className="overflow-hidden border border-black/15 bg-[#f6f3ec]">
+            <div className="overflow-hidden border border-black/15 bg-[#f7f8fc]">
                 {projects.length === 0 ? (
                     <div className="text-center py-16 px-6">
                         <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -62,7 +62,7 @@ export default async function AdminProjectsPage() {
                                                 </div>
                                             )}
                                             <div className="min-w-0">
-                                                <p className="truncate font-display text-base font-semibold tracking-[-.025em] text-gray-900 transition-colors group-hover:text-[#9a4529]">
+                                                <p className="truncate font-display text-base font-semibold tracking-[-.025em] text-gray-900 transition-colors group-hover:text-[#ff6433]">
                                                     {project.title}
                                                 </p>
                                                 <p className="text-xs text-gray-500 truncate mt-0.5">

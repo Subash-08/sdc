@@ -16,10 +16,10 @@ export const metadata: Metadata = {
   title: { default: siteConfig.seo.defaultTitle, template: siteConfig.seo.titleTemplate },
   description: siteConfig.seo.defaultDescription,
   applicationName: siteConfig.name,
-  icons: { icon: '/favicon.ico' },
+  icons: { icon: '/brand/sdc-logo.png', apple: '/brand/sdc-logo.png' },
   openGraph: { type: 'website', locale: 'en_IN', siteName: siteConfig.name, title: siteConfig.seo.defaultTitle, description: siteConfig.seo.defaultDescription },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${manrope.variable} scroll-smooth`}><body className="bg-paper font-sans text-ink antialiased"><AuthProvider><NextTopLoader color="#9a4529" showSpinner={false} /><ScrollProgress /><Navbar />{children}<Footer /></AuthProvider></body></html>;
+  return <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${manrope.variable} scroll-smooth`}><body className="bg-paper font-sans text-ink antialiased"><AuthProvider><NextTopLoader color="#ff6433" showSpinner={false} /><ScrollProgress /><Navbar />{children}<Footer /></AuthProvider></body></html>;
 }

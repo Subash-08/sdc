@@ -20,10 +20,10 @@ const config: Config = {
                 display: ["var(--font-manrope)", "sans-serif"],
             },
             colors: {
-                ink: "#111210",
-                paper: "#f6f3ec",
+                ink: "#171b42",
+                paper: "#f7f8fc",
                 clay: {
-                    300: "#d8a48e",
+                    300: "#ffb08f",
                 },
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",

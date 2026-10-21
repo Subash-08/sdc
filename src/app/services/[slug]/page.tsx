@@ -42,7 +42,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     <main className="bg-paper">
       <section className="service-detail-hero">
         <Image src={service.image} alt={service.title} fill priority sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,18,16,.88),rgba(17,18,16,.30))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,27,66,.88),rgba(23,27,66,.30))]" />
         <div className="site-shell relative flex min-h-[78vh] flex-col justify-end pb-12 pt-36 text-white">
           <Reveal><Link href="/services" className="mb-12 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.14em] text-stone-300"><ArrowLeft size={15} /> All services</Link><p className="eyebrow text-clay-300">Service {service.index}</p><h1 className="service-detail-title mt-5">{service.title}</h1><p className="body-large mt-7 max-w-2xl text-stone-200">{service.summary}</p></Reveal>
         </div>

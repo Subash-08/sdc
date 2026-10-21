@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, FolderKanban, FileText, LayoutGrid, FolderTree,
@@ -33,11 +34,11 @@ const Sidebar = () => {
     exact ? pathname === href : pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
-    <aside className="flex h-full w-20 shrink-0 flex-col border-r border-white/10 bg-[#111210] text-white md:w-72">
+    <aside className="flex h-full w-20 shrink-0 flex-col border-r border-white/10 bg-[#171b42] text-white md:w-72">
       {/* Brand */}
-      <div className="flex min-h-24 items-center gap-3 border-b border-white/10 px-4 md:px-6">
-        <span className="grid h-11 w-11 shrink-0 place-items-center border border-white/50 text-[10px] font-bold tracking-[.14em]">SDC</span>
-        <div className="hidden md:block"><p className="text-sm font-semibold uppercase leading-tight tracking-[-.02em]">Shree Dhurga<br />Constructions</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.18em] text-[#d8a48e]">Content studio</p></div>
+      <div className="flex min-h-24 items-center gap-3 border-b border-white/10 px-3 md:px-5">
+        <Image src="/brand/sdc-logo.png" alt="Shree Dhurga Constructions" width={512} height={512} className="h-14 w-20 shrink-0 object-contain md:h-16 md:w-32" />
+        <div className="hidden md:block"><p className="text-[9px] font-bold uppercase tracking-[.18em] text-[#ff8a61]">Content studio</p></div>
       </div>
 
       {/* Navigation */}
@@ -50,7 +51,7 @@ const Sidebar = () => {
               key={link.href}
               href={link.href}
               className={`flex min-h-11 items-center gap-3 border px-3 text-sm font-medium transition-all duration-200 ${
-                active ? 'border-[#d8a48e] bg-[#9a4529] text-white' : 'border-transparent text-stone-400 hover:border-white/15 hover:bg-white/5 hover:text-white'
+                active ? 'border-[#ffb08f] bg-[#ff6433] text-white' : 'border-transparent text-stone-400 hover:border-white/15 hover:bg-white/5 hover:text-white'
               }`}
             >
               <Icon size={17} className="shrink-0" />
@@ -65,7 +66,7 @@ const Sidebar = () => {
             onClick={() => setBlogExpanded((p) => !p)}
             className={`flex min-h-11 w-full items-center justify-between gap-3 border px-3 text-sm font-medium transition-all duration-200 ${
               pathname?.startsWith('/admin/blogs')
-                ? 'border-[#d8a48e] bg-white/10 text-white'
+                ? 'border-[#ffb08f] bg-white/10 text-white'
                 : 'border-transparent text-stone-400 hover:border-white/15 hover:bg-white/5 hover:text-white'
             }`}
           >
@@ -86,7 +87,7 @@ const Sidebar = () => {
                     key={link.href}
                     href={link.href}
                     className={`flex items-center gap-2.5 px-3 py-2 text-sm font-medium transition-all duration-150 ${
-                      active ? 'bg-[#9a4529] text-white' : 'text-stone-500 hover:bg-white/5 hover:text-white'
+                      active ? 'bg-[#ff6433] text-white' : 'text-stone-500 hover:bg-white/5 hover:text-white'
                     }`}
                   >
                     <Icon size={15} className="shrink-0" />
@@ -104,7 +105,7 @@ const Sidebar = () => {
         <Link href="/" className="flex min-h-11 w-full items-center gap-3 border border-transparent px-3 text-sm font-medium text-stone-400 transition hover:border-white/15 hover:text-white"><ExternalLink size={17} /><span className="hidden md:block">View website</span></Link>
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="flex min-h-11 w-full items-center gap-3 border border-transparent px-3 text-sm font-medium text-[#d8a48e] transition hover:border-[#9a4529] hover:bg-[#9a4529]/20"
+          className="flex min-h-11 w-full items-center gap-3 border border-transparent px-3 text-sm font-medium text-[#ffb08f] transition hover:border-[#ff6433] hover:bg-[#ff6433]/20"
         >
           <LogOut size={17} className="shrink-0" />
           <span className="hidden md:block">Logout</span>

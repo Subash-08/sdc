@@ -42,14 +42,14 @@ const blogContentCss = `
     font-weight: 600;
     line-height: 1.08;
     letter-spacing: -.04em;
-    color: #111210;
+    color: #171b42;
     margin-top: 2.4em;
     margin-bottom: 0.6em;
     scroll-margin-top: 6rem;
   }
 
   .blog-content h1 { font-size: 2.4rem; }
-  .blog-content h2 { font-size: clamp(1.9rem, 4vw, 3.1rem); border-top: 1px solid rgba(17,18,16,.2); padding-top: .75em; }
+  .blog-content h2 { font-size: clamp(1.9rem, 4vw, 3.1rem); border-top: 1px solid rgba(23,27,66,.2); padding-top: .75em; }
   .blog-content h3 { font-size: 1.45rem; }
   .blog-content h4 { font-size: 1.1rem; }
 
@@ -62,14 +62,14 @@ const blogContentCss = `
 
   /* ── Links ────────────────────────────────── */
   .blog-content a {
-    color: #9a4529;
+    color: #ff6433;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .blog-content a:hover {
-    color: #80371f;
-    border-bottom-color: #80371f;
+    color: #df4f20;
+    border-bottom-color: #df4f20;
   }
 
   /* ── Lists ────────────────────────────────── */
@@ -86,13 +86,13 @@ const blogContentCss = `
     line-height: 1.7;
   }
   .blog-content li::marker {
-    color: #9a4529;
+    color: #ff6433;
   }
 
   /* ── Blockquote ───────────────────────────── */
   .blog-content blockquote {
-    border-left: 3px solid #9a4529;
-    background: #e7e2d7;
+    border-left: 3px solid #ff6433;
+    background: #eef0f7;
     margin: 2em 0;
     padding: 1em 1.5em;
     font-style: italic;
@@ -195,7 +195,7 @@ const blogContentCss = `
   }
 
   /* ── Strong & Em ──────────────────────────── */
-  .blog-content strong { font-weight: 700; color: #111210; }
+  .blog-content strong { font-weight: 700; color: #171b42; }
   .blog-content em { font-style: italic; }
 
   /* ── FAQ Accordion ────────────────────────── */

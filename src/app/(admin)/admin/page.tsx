@@ -18,9 +18,9 @@ export default async function AdminDashboardPage() {
             label: 'Total Projects',
             value: projectCount,
             icon: FolderKanban,
-            color: 'text-[#9a4529]',
+            color: 'text-[#ff6433]',
             bg: 'bg-[#efe2da]',
-            border: 'border-[#d8a48e]',
+            border: 'border-[#ffb08f]',
         },
         {
             label: 'Published',
@@ -75,7 +75,7 @@ export default async function AdminDashboardPage() {
         <div className="space-y-10">
             {/* Page Header */}
             <div className="border-b border-black/20 pb-7">
-                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#9a4529]">SDC content studio</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[#ff6433]">SDC content studio</p>
                 <h1 className="mt-3 font-display text-4xl font-semibold tracking-[-.05em] text-[#171713] sm:text-6xl">Project overview.</h1>
                 <p className="mt-3 text-sm text-stone-600">Manage construction work, field notes and the public portfolio.</p>
             </div>
@@ -87,7 +87,7 @@ export default async function AdminDashboardPage() {
                     return (
                         <div
                             key={stat.label}
-                            className={`flex min-h-40 flex-col justify-between border ${stat.border} bg-[#f6f3ec] p-5`}
+                            className={`flex min-h-40 flex-col justify-between border ${stat.border} bg-[#f7f8fc] p-5`}
                         >
                             <div className={`${stat.bg} ${stat.color} grid h-10 w-10 place-items-center shrink-0`}>
                                 <Icon size={20} />
@@ -115,17 +115,17 @@ export default async function AdminDashboardPage() {
                         <Link
                             key={action.href}
                             href={action.href}
-                            className="group flex min-h-24 items-center justify-between border border-black/15 bg-[#f6f3ec] p-5 transition-all duration-200 hover:border-[#9a4529] hover:bg-white"
+                            className="group flex min-h-24 items-center justify-between border border-black/15 bg-[#f7f8fc] p-5 transition-all duration-200 hover:border-[#ff6433] hover:bg-white"
                         >
                             <div>
-                                <p className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-[#9a4529]">
+                                <p className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-[#ff6433]">
                                     {action.label}
                                 </p>
                                 <p className="text-xs text-gray-500 mt-0.5">{action.description}</p>
                             </div>
                             <ArrowRight
                                 size={16}
-                                className="ml-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-[#9a4529]"
+                                className="ml-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-[#ff6433]"
                             />
                         </Link>
                     ))}

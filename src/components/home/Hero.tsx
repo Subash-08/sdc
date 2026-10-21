@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section id="top" className="relative min-h-[760px] overflow-hidden bg-ink text-white lg:min-h-screen">
       <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85" alt="Contemporary high-rise architecture" fill priority sizes="100vw" className="object-cover object-center" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,18,16,.90)_0%,rgba(17,18,16,.55)_52%,rgba(17,18,16,.20)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,27,66,.90)_0%,rgba(23,27,66,.55)_52%,rgba(23,27,66,.20)_100%)]" />
       <div className="absolute inset-0 construction-grid opacity-30" />
       <div className="site-shell relative flex min-h-[760px] flex-col justify-end pb-12 pt-32 lg:min-h-screen lg:pb-16">
         <div className="max-w-5xl">

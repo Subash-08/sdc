@@ -89,7 +89,7 @@ export default function NewsletterSignup({
               <button
                 type="submit"
                 disabled={state === 'loading'}
-                className="flex shrink-0 items-center gap-2 bg-accent px-6 py-3.5 font-semibold text-white transition-all hover:bg-[#80371f] disabled:opacity-70"
+                className="flex shrink-0 items-center gap-2 bg-accent px-6 py-3.5 font-semibold text-white transition-all hover:bg-[#df4f20] disabled:opacity-70"
               >
                 {state === 'loading' ? (
                   <><Loader2 size={16} className="animate-spin" /> Subscribing...</>
