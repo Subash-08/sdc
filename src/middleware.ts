@@ -34,6 +34,14 @@ export default withAuth(
         }
     },
     {
+        pages: {
+            signIn: "/admin/login",
+        },
+        // Keep middleware JWT decoding on the exact same secret as the
+        // NextAuth route. This is especially important in Vercel's edge
+        // runtime, where relying on implicit option discovery can result in a
+        // valid session being treated as unauthenticated.
+        secret: process.env.NEXTAUTH_SECRET,
         callbacks: {
             authorized: ({ req, token }) => {
                 // Allow access to login page without token
