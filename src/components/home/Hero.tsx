@@ -7,7 +7,7 @@ import { siteConfig } from '@/config/site';
 export default function Hero() {
   return (
     <section id="top" className="relative min-h-[760px] overflow-hidden bg-ink text-white lg:min-h-screen">
-      <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85" alt="Contemporary high-rise architecture" fill priority sizes="100vw" className="object-cover object-center" />
+      <Image src="/canva/canva-e780339d-9938-4e29-8119-eace3c532866.jpg" alt="Shree Dhurga Constructions team delivering masonry work on site" fill priority sizes="100vw" className="object-cover object-center" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,27,66,.90)_0%,rgba(23,27,66,.55)_52%,rgba(23,27,66,.20)_100%)]" />
       <div className="absolute inset-0 construction-grid opacity-30" />
       <div className="site-shell relative flex min-h-[760px] flex-col justify-end pb-12 pt-32 lg:min-h-screen lg:pb-16">
@@ -19,7 +19,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-3"><a href={siteConfig.phoneHref} className="button button--accent">Start a project <ArrowUpRight size={17} /></a><Link href="/works" className="button button--ghost">View projects</Link></div>
           </Reveal>
         </div>
-        <div className="mt-16 flex items-end justify-between border-t border-white/25 pt-5 text-xs uppercase tracking-[.18em] text-stone-300"><span>Established 1998</span><a href="#about" className="flex items-center gap-2">Explore <ArrowDown size={15} /></a></div>
+        <div className="mt-16 flex items-end justify-between border-t border-white/25 pt-5 text-xs uppercase tracking-[.18em] text-stone-300"><span>10+ years · Civil & electrical</span><a href="#about" className="flex items-center gap-2">Explore <ArrowDown size={15} /></a></div>
       </div>
     </section>
   );

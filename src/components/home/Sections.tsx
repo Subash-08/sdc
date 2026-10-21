@@ -6,11 +6,11 @@ import { siteConfig } from '@/config/site';
 import ParallaxMedia from './ParallaxMedia';
 
 const services = [
-  { number: '01', name: 'Building Construction', text: 'End-to-end delivery for residential and large-scale construction projects.', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80' },
-  { number: '02', name: 'Commercial Building', text: 'Functional, modern environments planned around the way your business operates.', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80' },
-  { number: '03', name: 'Industrial Building', text: 'Durable warehouses, manufacturing facilities and industrial structures built for performance.', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80' },
-  { number: '04', name: 'Renovation & Interiors', text: 'Considered renovation, restoration and interior work that gives existing spaces new purpose.', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80' },
-  { number: '05', name: 'Specialist Works', text: 'Industrial roofing, cement roads, waterproofing and public-infrastructure construction.', image: 'https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=900&q=80' },
+  { number: '01', name: 'Building Construction', text: 'End-to-end delivery for homes, apartments, schools and larger building projects.', image: '/canva/canva-e780339d-9938-4e29-8119-eace3c532866.jpg' },
+  { number: '02', name: 'Commercial & Industrial', text: 'Practical facilities planned around operations, safety and durable everyday performance.', image: '/canva/canva-9db5987c-9892-4e38-afda-aa860bea7bac.png' },
+  { number: '03', name: 'Government & CSR Works', text: 'Public buildings, school improvements and infrastructure delivered with accountable coordination.', image: '/canva/canva-68e67889-063d-493d-9a8c-62707300557a.png' },
+  { number: '04', name: 'Planning & Electrical', text: 'Building planning, blueprints, approvals and HT/LT electrical liaisoning support.', image: '/canva/canva-738ca25b-8343-44c4-a200-625a8b373df4.png' },
+  { number: '05', name: 'Roads, Roofing & Protection', text: 'Cement roads, industrial roofing, waterproofing and specialist construction works.', image: '/canva/canva-b58bfa8c-a009-4f9c-95cf-2850e1e72078.png' },
 ];
 const principles = [
   ['Quality in every detail', 'Materials, workmanship and finishes are approached with care from the outset.'],
@@ -28,11 +28,11 @@ const process = [
 export function AboutIntro() {
   return <section id="about" className="section bg-stone-100"><div className="site-shell grid gap-14 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
     <Reveal><p className="eyebrow text-accent">About Shree Dhurga</p><div className="mt-12 grid grid-cols-3 gap-3 border-y border-ink/15 py-6">
-      <div><strong className="stat">25+</strong><span className="stat-label">Years experience</span></div><div><strong className="stat">500+</strong><span className="stat-label">Projects done</span></div><div><strong className="stat">100+</strong><span className="stat-label">Happy clients</span></div>
+      <div><strong className="stat">10+</strong><span className="stat-label">Years of practice</span></div><div><strong className="stat">2</strong><span className="stat-label">Core disciplines</span></div><div><strong className="stat">5</strong><span className="stat-label">Service regions</span></div>
     </div></Reveal>
     <Reveal delay={0.08}><h2 className="display-heading">A dedicated partner in building excellence.</h2><div className="mt-9 grid gap-7 border-t border-ink/15 pt-7 md:grid-cols-2">
-      <p className="body-large">We translate ideas into considered, enduring places—bringing experience and practical guidance to each stage of the journey.</p>
-      <div><p className="text-stone-600">Our work spans homes, commercial spaces, industrial facilities, renovations and specialist construction in and around Hosur.</p><a href={siteConfig.phoneHref} className="text-link mt-7">Talk to our team <ArrowRight size={16} /></a></div>
+      <p className="body-large">We bring construction and electrical expertise together through a consultative approach shaped around each client’s needs.</p>
+      <div><p className="text-stone-600">Our work spans homes, commercial spaces, industrial facilities, public projects and specialist construction across Hosur and the wider region.</p><a href={siteConfig.phoneHref} className="text-link mt-7">Talk to our team <ArrowRight size={16} /></a></div>
     </div></Reveal>
   </div></section>;
 }
@@ -56,7 +56,7 @@ export function Process() {
 }
 
 export function BrandStatement() {
-  return <section className="relative min-h-[620px] overflow-hidden text-white"><Image src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2400&q=85" alt="Geometric concrete architecture" fill sizes="100vw" className="object-cover" /><div className="absolute inset-0 bg-black/55" /><div className="site-shell relative flex min-h-[620px] items-end py-16 sm:py-20"><Reveal className="max-w-5xl"><p className="eyebrow mb-5 text-stone-200">Our construction philosophy</p><h2 className="brand-statement">Built for today.<br />Made to endure.</h2></Reveal></div></section>;
+  return <section className="relative min-h-[620px] overflow-hidden text-white"><Image src="/canva/canva-9a751362-a694-4ccc-99b1-f2eba6a43f82.png" alt="Multi-storey institutional construction by Shree Dhurga Constructions" fill sizes="100vw" className="object-cover" /><div className="absolute inset-0 bg-black/60" /><div className="site-shell relative flex min-h-[620px] items-end py-16 sm:py-20"><Reveal className="max-w-5xl"><p className="eyebrow mb-5 text-stone-200">Our construction philosophy</p><h2 className="brand-statement">Built for today.<br />Made to endure.</h2></Reveal></div></section>;
 }
 
 export function QualityCommitment() {
@@ -71,7 +71,7 @@ export function ProjectAnatomy() {
     ['04', 'Finish', 'Bring material, craft and everyday touchpoints together with a disciplined close-out.'],
   ];
   return <section className="anatomy-section bg-ink text-white"><div className="site-shell grid lg:grid-cols-[1.05fr_.95fr]">
-    <ParallaxMedia className="anatomy-media min-h-[540px] lg:min-h-[860px]"><Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85" alt="Construction structure and material detail" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></ParallaxMedia>
+    <ParallaxMedia className="anatomy-media min-h-[540px] lg:min-h-[860px]"><Image src="/canva/canva-2a45d16a-e5ad-433d-b018-114f74318aa1.png" alt="Reinforced concrete and masonry construction in progress" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></ParallaxMedia>
     <div className="flex flex-col justify-center py-20 lg:py-28 lg:pl-16"><Reveal><p className="eyebrow text-clay-300">Anatomy of a build</p><h2 className="display-heading mt-5">Every layer has a job to do.</h2><p className="mt-7 max-w-lg leading-7 text-stone-400">Good buildings are not assembled as isolated parts. We think from ground condition to final finish as one continuous piece of work.</p></Reveal><div className="mt-12 border-t border-white/20">{layers.map(([number, title, text], index) => <Reveal key={title} delay={index * .04}><article className="anatomy-row"><span>{number}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div>
   </div></section>;
 }
@@ -79,7 +79,7 @@ export function ProjectAnatomy() {
 export function SiteDialogue() {
   return <section className="section overflow-hidden bg-paper"><div className="site-shell">
     <Reveal className="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end"><div><p className="eyebrow text-accent">Site intelligence</p><p className="mt-6 max-w-sm leading-7 text-stone-600">The most useful decisions often begin with observation: how people arrive, where water moves, how light travels and what the operation needs.</p></div><h2 className="display-heading">The site speaks.<br />We start by listening.</h2></Reveal>
-    <div className="mt-14 grid gap-5 md:grid-cols-[1.35fr_.65fr] md:items-end"><ParallaxMedia className="relative min-h-[420px] md:min-h-[680px]"><Image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1700&q=85" alt="Construction team reviewing a live site" fill sizes="(max-width: 768px) 100vw, 70vw" className="object-cover" /></ParallaxMedia><div className="grid gap-5"><Reveal><div className="site-note"><span>Observe</span><p>Access, orientation, context and constraints are mapped before the build sequence is fixed.</p></div></Reveal><ParallaxMedia className="relative min-h-[300px] md:min-h-[390px]"><Image src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1000&q=85" alt="Architectural roof geometry" fill sizes="(max-width: 768px) 100vw, 30vw" className="object-cover" /></ParallaxMedia></div></div>
+    <div className="mt-14 grid gap-5 md:grid-cols-[1.35fr_.65fr] md:items-end"><ParallaxMedia className="relative min-h-[420px] md:min-h-[680px]"><Image src="/canva/canva-738ca25b-8343-44c4-a200-625a8b373df4.png" alt="Foundation and reinforcement work on a live site" fill sizes="(max-width: 768px) 100vw, 70vw" className="object-cover" /></ParallaxMedia><div className="grid gap-5"><Reveal><div className="site-note"><span>Observe</span><p>Access, orientation, context and constraints are mapped before the build sequence is fixed.</p></div></Reveal><ParallaxMedia className="relative min-h-[300px] md:min-h-[390px]"><Image src="/canva/canva-38c55a6b-ee4f-4b4b-a28f-72d89ff4fd2e.png" alt="Industrial steel roof structure" fill sizes="(max-width: 768px) 100vw, 30vw" className="object-cover" /></ParallaxMedia></div></div>
   </div></section>;
 }
 
