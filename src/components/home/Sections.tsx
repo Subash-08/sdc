@@ -133,14 +133,20 @@ export function FinalCTA() {
 export function HomeFooter() {
   return (
     <footer className="home2-footer">
-      <div className="site-shell">
-        <div className="home2-footer-top">
-          <div className="home2-footer-brand"><Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} /><p>Civil and electrical engineers, consultants and contractors based in Hosur.</p></div>
-          <nav aria-label="Homepage footer navigation"><span>Explore</span><Link href="/about">About</Link><Link href="/services">Services</Link><Link href="/works">Projects</Link><Link href="/blog">Field notes</Link></nav>
-          <div className="home2-footer-contact"><span>Start a project</span><a href={siteConfig.phoneHref}>{siteConfig.phone}</a><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><p>{siteConfig.address}</p></div>
+      <div className="home2-footer-frame">
+        <div className="home2-footer-pitch">
+          <div><p className="home2-footer-chip"><span /> Built with purpose</p><h2>Shree Dhurga<br /><em>Constructions</em></h2><p>Civil and electrical engineering for homes, industries, businesses and public infrastructure.</p></div>
+          <div className="home2-footer-action"><span>Have a project in mind?</span><p>Share the location, project type and current stage. We will help identify the right next step.</p><a href={siteConfig.phoneHref}>Discuss your project <ArrowUpRight size={16} /></a></div>
         </div>
-        <div className="home2-footer-wordmark">SHREE DHURGA<br />CONSTRUCTIONS</div>
-        <div className="home2-footer-bottom"><p>© {new Date().getFullYear()} Shree Dhurga Constructions</p><p>Hosur · Tamil Nadu</p><a href="#top">Back to top ↑</a></div>
+
+        <div className="home2-footer-directory">
+          <div className="home2-footer-brand"><Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} /><p>Engineers, consultants and contractors based in Hosur, Tamil Nadu.</p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><a href={siteConfig.phoneHref}>{siteConfig.phone}</a></div>
+          <nav aria-label="Homepage footer navigation"><span>Explore</span><Link href="/about">Company</Link><Link href="/works">Project work</Link><Link href="/blog">Field notes</Link><Link href="#contact">Contact</Link></nav>
+          <nav aria-label="Construction services"><span>Construction</span><Link href="/services/building-construction">Building construction</Link><Link href="/services/industrial-building">Industrial facilities</Link><Link href="/services/commercial-building">Commercial buildings</Link><Link href="/services/government-projects">Public works</Link></nav>
+          <nav aria-label="Specialist services"><span>Specialist work</span><Link href="/services/building-planning">Planning &amp; approvals</Link><Link href="/services/electrical-liaisoning">Electrical liaisoning</Link><Link href="/services/industrial-roofing">Industrial roofing</Link><Link href="/services/renovation">Renovation</Link></nav>
+        </div>
+
+        <div className="home2-footer-bottom"><p>© {new Date().getFullYear()} Shree Dhurga Constructions. All rights reserved.</p><p>Hosur · Tamil Nadu</p><a href="#top">Back to top ↑</a></div>
       </div>
     </footer>
   );
