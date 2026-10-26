@@ -6,15 +6,28 @@ import Reveal from './Reveal';
 
 export default function FeaturedProjects({ projects }: { projects: IProject[] }) {
   return (
-    <section className="section bg-paper"><div className="site-shell">
-      <Reveal className="flex items-end justify-between gap-6 border-b border-ink/20 pb-9"><div><p className="eyebrow text-accent">Selected work</p><h2 className="display-heading mt-5">Projects built to perform.</h2></div><Link href="/works" className="text-link hidden sm:flex">View all projects <ArrowRight size={16} /></Link></Reveal>
-      {projects.length > 0 ? <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2">{projects.map((project, index) => (
-        <Reveal key={String(project._id)} delay={(index % 2) * .08} className={index % 2 ? 'md:mt-24' : ''}><Link href={`/works/${project.slug}`} className="project-card group">
-          <div className="project-media"><Image src={project.thumbnail.url} alt={project.thumbnail.alt || project.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.035]" /><span className="project-open"><ArrowUpRight /></span></div>
-          <div className="mt-5 flex items-start justify-between gap-5 border-t border-ink/20 pt-4"><div><p className="project-meta">{typeof project.categoryId === 'object' ? (project.categoryId as unknown as { name?: string }).name || 'Project' : 'Project'}</p><h3>{project.title}</h3></div>{project.projectLocation && <span className="project-location">{project.projectLocation}</span>}</div>
-        </Link></Reveal>
-      ))}</div> : <Reveal className="project-empty mt-12"><p className="eyebrow text-accent">Portfolio in progress</p><h3>Our latest work will appear here as projects are published through the existing Project CMS.</h3><Link href="/works" className="text-link">Explore projects <ArrowRight size={16} /></Link></Reveal>}
-      <Link href="/works" className="text-link mt-9 sm:hidden">View all projects <ArrowRight size={16} /></Link>
-    </div></section>
+    <section className="home2-projects">
+      <div className="site-shell">
+        <Reveal className="home2-projects-head">
+          <div><p className="home2-label">Selected work</p><h2>Proof is built<br />at full scale.</h2></div>
+          <div><p>A selection of residential, industrial and public work from SDC&apos;s published portfolio.</p><Link href="/works" className="home2-text-link">View the complete archive <ArrowRight size={17} /></Link></div>
+        </Reveal>
+        {projects.length > 0 ? (
+          <div className="home2-project-grid">
+            {projects.map((project, index) => {
+              const category = typeof project.categoryId === 'object' ? (project.categoryId as unknown as { name?: string }).name || 'Construction' : 'Construction';
+              return (
+                <Reveal key={String(project._id)} delay={(index % 2) * .06} className={index === 0 ? 'home2-project-featured' : ''}>
+                  <Link href={`/works/${project.slug}`} className="home2-project-card group">
+                    <div className="home2-project-image"><Image src={project.thumbnail.url} alt={project.thumbnail.alt || project.title} fill sizes={index === 0 ? '(max-width: 900px) 100vw, 66vw' : '(max-width: 900px) 100vw, 33vw'} className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" /><span>{String(index + 1).padStart(2, '0')}</span><i><ArrowUpRight size={20} /></i></div>
+                    <div className="home2-project-meta"><p>{category}</p><h3>{project.title}</h3></div>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        ) : <Reveal className="home2-empty">Published projects will appear here from the existing Project CMS.</Reveal>}
+      </div>
+    </section>
   );
 }

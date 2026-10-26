@@ -37,11 +37,12 @@ export default function Navbar() {
   }, [open]);
 
   if (pathname?.startsWith('/admin')) return null;
-  const hasDarkHero = pathname === '/' || pathname === '/about' || pathname?.startsWith('/works') || pathname?.startsWith('/blog') || pathname?.startsWith('/services');
+  const isHome = pathname === '/';
+  const hasDarkHero = pathname === '/about' || pathname?.startsWith('/works') || pathname?.startsWith('/blog') || pathname?.startsWith('/services');
   const lightHeader = open || servicesOpen || (hasDarkHero && !scrolled);
 
   return (
-    <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''} ${lightHeader ? 'site-header--light' : ''}`} onMouseLeave={() => setServicesOpen(false)}>
+    <header className={`site-header ${isHome ? 'site-header--home' : ''} ${scrolled ? 'site-header--scrolled' : ''} ${lightHeader ? 'site-header--light' : ''}`} onMouseLeave={() => setServicesOpen(false)}>
       <div className="site-shell flex h-[76px] items-center justify-between lg:h-[88px]">
         <Link href="/" className="brand-mark" aria-label={`${siteConfig.name} home`}>
           <Image src="/brand/sdc-logo-transparent-v2.png" alt="Shree Dhurga Constructions" width={512} height={512} priority className="brand-logo" />

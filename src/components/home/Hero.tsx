@@ -1,25 +1,46 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Reveal from './Reveal';
 import { siteConfig } from '@/config/site';
 
 export default function Hero() {
   return (
-    <section id="top" className="relative min-h-[760px] overflow-hidden bg-ink text-white lg:min-h-screen">
-      <Image src="/canva/canva-e780339d-9938-4e29-8119-eace3c532866.jpg" alt="Shree Dhurga Constructions team delivering masonry work on site" fill priority sizes="100vw" className="object-cover object-center" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,27,66,.90)_0%,rgba(23,27,66,.55)_52%,rgba(23,27,66,.20)_100%)]" />
-      <div className="absolute inset-0 construction-grid opacity-30" />
-      <div className="site-shell relative flex min-h-[760px] flex-col justify-end pb-12 pt-32 lg:min-h-screen lg:pb-16">
-        <div className="max-w-5xl">
-          <Reveal><p className="eyebrow mb-6 text-stone-200">Construction & engineering · Hosur, Tamil Nadu</p></Reveal>
-          <Reveal delay={0.08}><h1 className="hero-title">We build with<br /><span>purpose.</span></h1></Reveal>
-          <Reveal delay={0.16} className="mt-7 grid gap-7 md:grid-cols-[1fr_auto] md:items-end">
-            <p className="max-w-xl text-base leading-7 text-stone-200 sm:text-lg">From first plans to final handover, {siteConfig.name} delivers residential, commercial, industrial and renovation work with disciplined attention to detail.</p>
-            <div className="flex flex-wrap gap-3"><a href={siteConfig.phoneHref} className="button button--accent">Start a project <ArrowUpRight size={17} /></a><Link href="/works" className="button button--ghost">View projects</Link></div>
+    <section id="top" className="home2-hero">
+      <div className="home2-grid" aria-hidden="true" />
+      <div className="site-shell relative z-10">
+        <div className="home2-hero-layout">
+          <div className="home2-hero-copy">
+            <Reveal>
+              <p className="home2-kicker"><span /> Civil + electrical construction · Hosur</p>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <h1 className="home2-hero-title">We build<br /><em>what lasts.</em></h1>
+            </Reveal>
+            <Reveal delay={0.12} className="home2-hero-bottom">
+              <p>From planning and approvals to disciplined site execution, SDC delivers homes, industrial facilities and public works built for everyday performance.</p>
+              <div className="home2-actions">
+                <a href={siteConfig.phoneHref} className="home2-button home2-button--solid">Start a project <ArrowUpRight size={18} /></a>
+                <Link href="/works" className="home2-button home2-button--line">See our work <ArrowDownRight size={18} /></Link>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.1} className="home2-hero-visual">
+            <div className="home2-hero-image">
+              <Image src="/canva/canva-e780339d-9938-4e29-8119-eace3c532866.jpg" alt="SDC construction team completing masonry work on site" fill priority sizes="(max-width: 900px) 100vw, 46vw" className="object-cover" />
+            </div>
+            <div className="home2-image-tag"><span>On site</span><strong>Hosur<br />Tamil Nadu</strong></div>
+            <div className="home2-image-index">SDC / 01</div>
           </Reveal>
         </div>
-        <div className="mt-16 flex items-end justify-between border-t border-white/25 pt-5 text-xs uppercase tracking-[.18em] text-stone-300"><span>10+ years · Civil & electrical</span><a href="#about" className="flex items-center gap-2">Explore <ArrowDown size={15} /></a></div>
+
+        <Reveal delay={0.18} className="home2-proof-strip">
+          <div><strong>10+</strong><span>Years of practical experience</span></div>
+          <div><strong>02</strong><span>Civil and electrical disciplines</span></div>
+          <div><strong>05</strong><span>Regions served across Tamil Nadu & Bengaluru</span></div>
+          <p>Consultants<br />& contractors</p>
+        </Reveal>
       </div>
     </section>
   );

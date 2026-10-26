@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from '@/components/admin/Sidebar';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { Metadata } from 'next';
+import AuthProvider from '@/components/providers/AuthProvider';
 
 export const metadata: Metadata = {
     title: 'Admin Dashboard',
@@ -17,7 +18,7 @@ export default function AdminRootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="admin-shell flex h-screen bg-[#e8e3d8] text-[#171713]">
+        <AuthProvider><div className="admin-shell flex h-screen bg-[#e8e3d8] text-[#171713]">
             <Sidebar />
             <main className="flex-1 overflow-y-auto">
                 <div className="admin-content mx-auto max-w-screen-2xl p-4 sm:p-6 lg:p-10">
@@ -26,6 +27,6 @@ export default function AdminRootLayout({
                     </ErrorBoundary>
                 </div>
             </main>
-        </div>
+        </div></AuthProvider>
     );
 }

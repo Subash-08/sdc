@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NAV_ITEMS } from "@/constants";
+import AuthProvider from '@/components/providers/AuthProvider';
 
 // Dashboard pages use authenticated, live database data and must not prerender.
 export const dynamic = 'force-dynamic';
@@ -10,7 +11,7 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex min-h-screen">
+        <AuthProvider><div className="flex min-h-screen">
             {/* Sidebar */}
             <aside className="w-64 bg-card border-r hidden md:block">
                 <div className="p-6">
@@ -33,6 +34,6 @@ export default function DashboardLayout({
             <main className="flex-1 p-8 bg-background">
                 {children}
             </main>
-        </div>
+        </div></AuthProvider>
     );
 }
