@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Building2, Factory, House, Landmark, MapPin, Phone } from 'lucide-react';
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Building2, MapPin, Phone } from 'lucide-react';
 import Reveal from './Reveal';
 import ParallaxMedia from './ParallaxMedia';
 import { siteConfig } from '@/config/site';
 
 const buyerPaths = [
-  { icon: Factory, title: 'Industrial & commercial', copy: 'Factories, warehouses, roofing, business premises and coordinated civil or electrical work.', href: '/services/industrial-building', link: 'Explore industrial capability', image: '/canva/canva-9db5987c-9892-4e38-afda-aa860bea7bac.png' },
-  { icon: House, title: 'Residential construction', copy: 'Independent homes, villas, apartments, renovations and carefully coordinated interiors.', href: '/services/building-construction', link: 'Plan a residential project', image: '/canva/canva-e3daa938-10fc-456b-aadf-1dc688b22340.jpg' },
-  { icon: Landmark, title: 'Institutional & public work', copy: 'Schools, roads and public infrastructure delivered around defined project requirements.', href: '/services/government-projects', link: 'View public-work capability', image: '/canva/canva-68e67889-063d-493d-9a8c-62707300557a.png' },
+  { title: 'Industrial & commercial', copy: 'Factories, warehouses, roofing, business premises and coordinated civil or electrical work.', href: '/services/industrial-building', link: 'Explore industrial capability', image: '/canva/canva-9db5987c-9892-4e38-afda-aa860bea7bac.png' },
+  { title: 'Residential construction', copy: 'Independent homes, villas, apartments, renovations and carefully coordinated interiors.', href: '/services/building-construction', link: 'Plan a residential project', image: '/canva/canva-e3daa938-10fc-456b-aadf-1dc688b22340.jpg' },
+  { title: 'Institutional & public work', copy: 'Schools, roads and public infrastructure delivered around defined project requirements.', href: '/services/government-projects', link: 'View public-work capability', image: '/canva/canva-68e67889-063d-493d-9a8c-62707300557a.png' },
 ];
 
 const capabilities = [
@@ -28,16 +28,16 @@ const process = [
 export function BuyerPathways() {
   return (
     <section className="home2-pathways" aria-labelledby="pathways-title">
-      <div className="site-shell">
-        <Reveal className="home2-section-head home2-section-head--compact">
+      <div className="site-shell home2-pathways-layout">
+        <Reveal className="home2-pathways-intro">
           <p className="home2-label">Find your project path</p>
           <h2 id="pathways-title">Start with the kind of project you need to deliver.</h2>
           <p>Different projects require different conversations. Choose the route closest to your requirement.</p>
+          <span>Choose a project category <ArrowDownRight size={17} /></span>
         </Reveal>
         <div className="home2-pathway-grid">
           {buyerPaths.map((item, index) => {
-            const Icon = item.icon;
-            return <Reveal key={item.title} delay={index * .05}><Link href={item.href} className="home2-pathway-card"><div className="home2-pathway-image"><Image src={item.image} alt="" fill sizes="(max-width: 699px) 100vw, 33vw" className="object-cover" /><span>0{index + 1}</span><Icon aria-hidden="true" /></div><div className="home2-pathway-copy"><h3>{item.title}</h3><p>{item.copy}</p><strong>{item.link} <ArrowUpRight size={16} /></strong></div></Link></Reveal>;
+            return <Reveal key={item.title} delay={index * .05}><Link href={item.href} className="home2-pathway-row"><span className="home2-pathway-number">0{index + 1}</span><div className="home2-pathway-image"><Image src={item.image} alt="" fill sizes="(max-width: 699px) 34vw, 18vw" className="object-cover" /></div><div className="home2-pathway-copy"><h3>{item.title}</h3><p>{item.copy}</p></div><strong>{item.link} <ArrowUpRight size={16} /></strong></Link></Reveal>;
           })}
         </div>
       </div>
